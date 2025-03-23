@@ -1,10 +1,10 @@
 import javax.swing.*;
-import java.awt.event.*;
 import java.sql.*;
 
 public class Main {
     private JFrame frame;
     private JPanel loginPanel;
+    private JPanel welcomePanel;
     private JLabel userLabel;
     private JLabel passwordLabel;
     private JTextField userNameTextField;
@@ -14,48 +14,76 @@ public class Main {
 
     public Main() {
 
+        // Frame
         frame = new JFrame("Tailor Management System");
         frame.setLayout(null);
-        loginPanel = new JPanel();
-        loginPanel.setLayout(null);
-        loginPanel.setBounds(0, 0, 800, 600);
-
-        userNameTextField = new JTextField();
-        passwordTextField = new JPasswordField();
-
-
-        frame.setSize(800, 600);
+//        frame.setSize(1000, 700);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
+        // Labels, Fields and Buttons
         userLabel = new JLabel("Username: ");
         passwordLabel = new JLabel("Password: ");
-
+        userNameTextField = new JTextField();
+        passwordTextField = new JPasswordField();
         loginButton = new JButton("Login");
 
+        JLabel imageLabel = new JLabel(new ImageIcon("pic.jpg"));
+        imageLabel.setBounds(10, 10, 736, 600);
 
-        userLabel.setBounds(10, 10, 100, 30);
-        passwordLabel.setBounds(10, 40, 100, 30);
-        userNameTextField.setBounds(100, 10, 150, 25);
-        passwordTextField.setBounds(100, 40, 150, 25);
-        loginButton.setBounds(100, 80, 100, 30);
+        JLabel welcomeText = new JLabel("Welcome to Tailor Management System", SwingConstants.CENTER);
+        welcomeText.setBounds(200, 450, 400, 30);
 
 
+
+        userLabel.setBounds(370, 300, 100, 30);
+        passwordLabel.setBounds(370, 350, 100, 30);
+        userNameTextField.setBounds(470, 300, 150, 25);
+        passwordTextField.setBounds(470, 350, 150, 25);
+        loginButton.setBounds(500, 400, 100, 30);
+
+
+        // Login Panel
+        loginPanel = new JPanel();
+        loginPanel.setLayout(null);
+        loginPanel.setBounds(0, 0, 1000, 700);
+
+        // Adding to Login Panel
         loginPanel.add(userLabel);
         loginPanel.add(passwordLabel);
         loginPanel.add(userNameTextField);
         loginPanel.add(passwordTextField);
         loginPanel.add(loginButton);
 
+        // Welcome Panel
+        welcomePanel = new JPanel();
+        welcomePanel.setLayout(null);
+        welcomePanel.setBounds(0, 0, 1000, 700);
+        welcomePanel.add(welcomeText);
 
-        frame.add(loginPanel);
+        welcomePanel.add(imageLabel);
 
+
+
+
+
+        frame.add(welcomePanel);
         frame.setVisible(true);
 
-        loginButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                handleLogin();
-            }
+        // Timer to switch panels after 3 seconds
+        Timer timer = new Timer(1000, e -> {
+            frame.remove(welcomePanel);
+            frame.add(loginPanel);
+            frame.revalidate();
+            frame.repaint();
         });
+        timer.setRepeats(false); // Ensure the timer runs only once
+        timer.start();
+
+
+
+        loginButton.addActionListener(e -> handleLogin());
     }
 
     private void handleLogin() {
