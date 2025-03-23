@@ -4,27 +4,21 @@ import java.sql.*;
 
 public class Main {
     private JFrame frame;
-    private JPanel panel;
+    private JPanel loginPanel;
     private JLabel userLabel;
     private JLabel passwordLabel;
     private JTextField userNameTextField;
     private JPasswordField passwordTextField;
     private JButton loginButton;
 
-    public JTextField getUserNameTextField() {
-        return userNameTextField;
-    }
-    public JPasswordField getPasswordTextField() {
-        return passwordTextField;
-    }
 
     public Main() {
 
         frame = new JFrame("Tailor Management System");
         frame.setLayout(null);
-        panel = new JPanel();
-        panel.setLayout(null);
-        panel.setBounds(0, 0, 800, 600);
+        loginPanel = new JPanel();
+        loginPanel.setLayout(null);
+        loginPanel.setBounds(0, 0, 800, 600);
 
         userNameTextField = new JTextField();
         passwordTextField = new JPasswordField();
@@ -46,14 +40,14 @@ public class Main {
         loginButton.setBounds(100, 80, 100, 30);
 
 
-        panel.add(userLabel);
-        panel.add(passwordLabel);
-        panel.add(userNameTextField);
-        panel.add(passwordTextField);
-        panel.add(loginButton);
+        loginPanel.add(userLabel);
+        loginPanel.add(passwordLabel);
+        loginPanel.add(userNameTextField);
+        loginPanel.add(passwordTextField);
+        loginPanel.add(loginButton);
 
 
-        frame.add(panel);
+        frame.add(loginPanel);
 
         frame.setVisible(true);
 
