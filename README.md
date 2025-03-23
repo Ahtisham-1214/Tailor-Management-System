@@ -7,3 +7,7 @@ CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY,
                     password VARCHAR(50) NOT NULL);
 
 insert into users (username, password) values ('Your Name', 'Your Password');
+
+# Day 2
+Work on backend classes (Shirt, Pant, Coat, Shalwar Kameez) measurements.
+still remaining to connect with database and business logic.
