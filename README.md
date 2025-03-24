@@ -11,3 +11,7 @@ insert into users (username, password) values ('Your Name', 'Your Password');
 # Day 2
 Work on backend classes (Shirt, Pant, Coat, Shalwar Kameez) measurements.
 still remaining to connect with database and business logic.
+
+# Day 3
+Work on totally frontend classes and confused about the design strategy.
+So, tomorrow will work on backend in the end work on fronted
