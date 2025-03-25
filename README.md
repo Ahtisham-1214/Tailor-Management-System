@@ -15,3 +15,7 @@ still remaining to connect with database and business logic.
 # Day 3
 Work on totally frontend classes and confused about the design strategy.
 So, tomorrow will work on backend in the end work on fronted
+
+# Day 4
+Work on frontend and added side bar and landing page.
+Added event handing and clear field functionality.
