@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class LoginPanel {
     JPanel panel;
@@ -12,20 +13,27 @@ public class LoginPanel {
         passwordLabel = new JLabel("Password: ");
         userNameTextField = new JTextField();
         passwordTextField = new JPasswordField();
+
+        userLabel.setForeground(Color.WHITE);
+        passwordLabel.setForeground(Color.WHITE);
+
         loginButton = new JButton("Login");
+        loginButton.setBackground(Color.WHITE);
+        loginButton.setForeground(Color.DARK_GRAY);
+        loginButton.setOpaque(true);
 
-
-        userLabel.setBounds(370, 300, 100, 30);
-        passwordLabel.setBounds(370, 350, 100, 30);
-        userNameTextField.setBounds(470, 300, 150, 25);
-        passwordTextField.setBounds(470, 350, 150, 25);
-        loginButton.setBounds(500, 400, 100, 30);
+        userLabel.setBounds(100, 200, 100, 30);
+        passwordLabel.setBounds(100, 250, 100, 30);
+        userNameTextField.setBounds(200, 200, 150, 25);
+        passwordTextField.setBounds(200, 250, 150, 25);
+        loginButton.setBounds(200, 300, 100, 30);
 
 
         // Login Panel
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBounds(0, 0, 1000, 700);
+        panel.setBounds(450, 100, 550, 500);
+        panel.setBackground(Color.DARK_GRAY);
 
         // Adding to Login Panel
         panel.add(userLabel);
