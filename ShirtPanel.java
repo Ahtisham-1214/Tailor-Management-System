@@ -21,17 +21,31 @@ public class ShirtPanel {
     private JComboBox<String> cuffTypeField;
     private JTextArea descriptionField;
     private JLabel shirtHeading;
+    private JButton clearButton;
+    private JButton saveButton;
 
     public ShirtPanel() {
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBounds(10, 20, 400, 450);
+        panel.setBounds(400, 100, 500, 550);
         panel.setBackground(new Color(169, 169, 169));
 
 
         shirtHeading = new JLabel("Shirt");
         shirtHeading.setFont(new Font("Arial Black", Font.BOLD, 30));
         shirtHeading.setBounds(50, 10, 300, 30);
+
+        clearButton = new JButton("Clear");
+//        clearButton.setFont(new Font("Arial Black", Font.BOLD, 10));
+        clearButton.setBackground(Color.WHITE);
+        clearButton.setForeground(Color.DARK_GRAY);
+        clearButton.setOpaque(true);
+
+
+        saveButton = new JButton("Save");
+        saveButton.setBackground(Color.WHITE);
+        saveButton.setForeground(Color.DARK_GRAY);
+        saveButton.setOpaque(true);
 
         chestLabel = new JLabel("Chest");
         neckLabel = new JLabel("Neck");
@@ -69,6 +83,13 @@ public class ShirtPanel {
         statusTextField.setBounds(120, 300, 150, 30);
         descriptionField.setBounds(120, 340, 230, 100);
 
+        clearButton.setBounds(120, 470,80, 30);
+        saveButton.setBounds(220, 470,80, 30);
+
+
+
+        panel.add(saveButton);
+        panel.add(clearButton);
 
 
         panel.add(shirtHeading);
@@ -81,6 +102,7 @@ public class ShirtPanel {
         panel.add(cuffTypeField);
         panel.add(descriptionField);
 
+
         panel.add(chestLabel);
         panel.add(neckLabel);
         panel.add(shoulderLabel);
@@ -89,6 +111,18 @@ public class ShirtPanel {
         panel.add(descriptionLabel);
         panel.add(sleeveLengthLabel);
         panel.add(shirtLengthLabel);
+
+
+        clearButton.addActionListener(e ->{
+            chestTextField.setText("");
+            neckTextField.setText("");
+            shoulderTextField.setText("");
+            sleeveLengthField.setText("");
+            shirtLengthField.setText("");
+            cuffTypeField.setSelectedIndex(0);
+            statusTextField.setSelectedIndex(0);
+            descriptionField.setText("");
+        });
 
     }
 

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class CoatPanel {
     private JPanel panel;
@@ -11,6 +12,8 @@ public class CoatPanel {
     private JLabel statusLabel;
     private JLabel descriptionLabel;
 
+    private JButton clearButton;
+    private JButton saveButton;
 
     private JTextField chestTextField;
     private JTextField waistTextField;
@@ -22,9 +25,22 @@ public class CoatPanel {
     public CoatPanel() {
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBounds(900, 20, 400, 450);
+        panel.setBounds(450, 100, 500, 550);
         panel.setBackground(new Color(169, 169, 169));
 
+
+        clearButton = new JButton("Clear");
+        clearButton.setBackground(Color.WHITE);
+        clearButton.setForeground(Color.DARK_GRAY);
+        clearButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        clearButton.setOpaque(true);
+
+
+        saveButton = new JButton("Save");
+        saveButton.setBackground(Color.WHITE);
+        saveButton.setForeground(Color.DARK_GRAY);
+        saveButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        saveButton.setOpaque(true);
 
         coatHeading = new JLabel("Coat");
         coatHeading.setFont(new Font("Arial Black", Font.BOLD, 30));
@@ -58,8 +74,13 @@ public class CoatPanel {
         descriptionLabel.setBounds(50, 340, 100, 30);
         descriptionField.setBounds(150, 340, 230, 100);
 
-        
+        clearButton.setBounds(150, 450, 80, 30);
+        saveButton.setBounds(250, 450, 80, 30);
 
+
+
+        panel.add(clearButton);
+        panel.add(saveButton);
 
 
         panel.add(coatHeading);
@@ -75,6 +96,16 @@ public class CoatPanel {
         panel.add(statusField);
         panel.add(descriptionLabel);
         panel.add(descriptionField);
+
+
+        clearButton.addActionListener(e -> {
+            chestTextField.setText("");
+            waistTextField.setText("");
+            sleevesTextField.setText("");
+            shoulderTextField.setText("");
+            descriptionField.setText("");
+            statusField.setSelectedIndex(0);
+        });
     }
 
     public JPanel getPanel() {

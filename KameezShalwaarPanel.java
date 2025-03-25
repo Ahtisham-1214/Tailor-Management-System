@@ -4,7 +4,6 @@ import java.awt.*;
 public class KameezShalwaarPanel {
     private JPanel panel;
 
-    // Labels for thYe variablesY
     private JLabel kameezLengthLabel;
     private JLabel sleevesLabel;
     private JLabel sleevesTypeLabel;
@@ -16,14 +15,36 @@ public class KameezShalwaarPanel {
     private JLabel statusLabel;
     private JLabel kameezShalwaarHeading;
 
+    private JTextField kameezLengthTextField;
+    private JTextField sleevesTextField;
+    private JTextField shoulderTextField;
+    private JTextField neckTextField;
+    private JComboBox<String> sleevesTypeField;
+    private JComboBox<String> kameezTypeField;
+    private JComboBox<String> collarTypeField;
+    private JComboBox<String> statusField;
+    private JTextArea descriptionField;
+    private JButton clearButton;
+    private JButton saveButton;
     public KameezShalwaarPanel() {
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBounds(20, 500, 1300, 150);
-        panel.setBackground(new Color(169, 169, 169));
+        panel.setBounds(450, 50, 600, 650);
+        panel.setBackground(new Color(188, 208, 241, 255));
 
         kameezShalwaarHeading = new JLabel("Kameez Shalwaar");
         kameezShalwaarHeading.setFont(new Font("Arial Black", Font.BOLD, 30));
+
+
+        clearButton = new JButton("Clear");
+        clearButton.setBackground(Color.WHITE);
+        clearButton.setForeground(Color.DARK_GRAY);
+        clearButton.setOpaque(true);
+
+        saveButton = new JButton("Save");
+        saveButton.setBackground(Color.WHITE);
+        saveButton.setForeground(Color.DARK_GRAY);
+        saveButton.setOpaque(true);
 
 
 
@@ -38,23 +59,49 @@ public class KameezShalwaarPanel {
         descriptionLabel = new JLabel("Description");
 
 
+        kameezLengthTextField = new JTextField();
+        sleevesTextField = new JTextField();
+        shoulderTextField = new JTextField();
+        neckTextField = new JTextField();
+        collarTypeField = new JComboBox<>(new String[]{"Select", "Cooper", "French", "Sherwani"});
+        statusField = new JComboBox<>(new String[]{"Select", "Pending", "Process", "Completed", "Delivered"});
+        descriptionField = new JTextArea();
+        sleevesTypeField = new JComboBox<>(new String[]{"Select", "Square", "Oval"});
+        kameezTypeField = new JComboBox<>(new String[]{"Select", "Square", "Oval"});
 
-        kameezShalwaarHeading.setBounds(100, 10, 600, 30);
+
+
+        kameezShalwaarHeading.setBounds(50, 10, 600, 30);
+
         kameezLengthLabel.setBounds(20, 60, 100, 30);
-        sleevesLabel.setBounds(260, 60, 100, 30);
-        sleevesTypeLabel.setBounds(20, 100, 230, 30);
-        kameezTypeLabel.setBounds(260, 100, 230, 30);
+        kameezLengthTextField.setBounds(130, 60, 200, 30);
+        sleevesLabel.setBounds(20, 100, 100, 30);
+        sleevesTextField.setBounds(130, 100, 200, 30);
         shoulderLabel.setBounds(20, 140, 230, 30);
-        neckLabel.setBounds(260, 140, 230, 30);
-        collarTypeLabel.setBounds(20, 180, 230, 30);
-        statusLabel.setBounds(260, 180, 230, 30);
-        descriptionLabel.setBounds(20, 200, 460, 30);
+        shoulderTextField.setBounds(130, 140, 200, 30);
+        neckLabel.setBounds(20, 180, 100, 30);
+        neckTextField.setBounds(130, 180, 200, 30);
+        collarTypeLabel.setBounds(20, 220, 230, 30);
+        collarTypeField.setBounds(130, 220, 200, 30);
+        sleevesTypeLabel.setBounds(20, 270, 230, 30);
+        sleevesTypeField.setBounds(130, 270, 200, 30);
+        kameezTypeLabel.setBounds(20, 320, 230, 30);
+        kameezTypeField.setBounds(130, 320, 200, 30);
+        statusLabel.setBounds(20, 370, 230, 30);
+        statusField.setBounds(130, 370, 200, 30);
+        descriptionLabel.setBounds(20, 420, 460, 30);
+        descriptionField.setBounds(130, 420, 200, 100);
+
+        clearButton.setBounds(130, 550, 80, 30);
+        saveButton.setBounds(230, 550, 80, 30);
+
 
         
         
         
-        
-        
+
+        panel.add(saveButton);
+        panel.add(clearButton);
         panel.add(kameezShalwaarHeading);
         panel.add(kameezLengthLabel);
         panel.add(sleevesLabel);
@@ -65,6 +112,28 @@ public class KameezShalwaarPanel {
         panel.add(collarTypeLabel);
         panel.add(statusLabel);
         panel.add(descriptionLabel);
+
+        panel.add(kameezLengthTextField);
+        panel.add(sleevesTextField);
+        panel.add(shoulderTextField);
+        panel.add(neckTextField);
+        panel.add(collarTypeField);
+        panel.add(statusField);
+        panel.add(descriptionField);
+        panel.add(sleevesTypeField);
+        panel.add(kameezTypeField);
+
+        clearButton.addActionListener(e -> {
+            kameezLengthTextField.setText("");
+            sleevesTextField.setText("");
+            shoulderTextField.setText("");
+            neckTextField.setText("");
+            collarTypeField.setSelectedIndex(0);
+            statusField.setSelectedIndex(0);
+            descriptionField.setText("");
+        });
+
+
     }
 
     public JPanel getPanel() {

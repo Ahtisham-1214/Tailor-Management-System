@@ -9,6 +9,10 @@ public class PantPanel {
     private JLabel statusLabel;
     private JLabel inseamLabel;
     private JLabel descriptionLabel;
+    private JLabel pantHeading;
+
+    private JButton clearButton;
+    private JButton saveButton;
 
     private JTextArea descriptionTextArea;
     private JTextField waistTextField;
@@ -16,17 +20,31 @@ public class PantPanel {
     private JTextField inseamTextField;
     private JComboBox<String> typeField;
     private JComboBox<String> statusField;
-    private JLabel pantHeading;
 
     public PantPanel() {
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBounds(450, 20, 400, 450);
+        panel.setBounds(450, 100, 500, 600);
         panel.setBackground(new Color(169, 169, 169));
 
 
 
         // Widgets
+        clearButton = new JButton("Clear");
+//        clearButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        clearButton.setBackground(Color.WHITE);
+        clearButton.setForeground(Color.DARK_GRAY);
+        clearButton.setOpaque(true);
+
+        saveButton = new JButton("Save");
+//        saveButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        saveButton.setBackground(Color.WHITE);
+        saveButton.setForeground(Color.DARK_GRAY);
+        saveButton.setOpaque(true);
+
+
+
+
         pantHeading = new JLabel("Pant");
         pantHeading.setFont(new Font("Arial Black", Font.BOLD, 30));
 
@@ -67,8 +85,13 @@ public class PantPanel {
         descriptionLabel.setBounds(50, 340, 100, 30);
         descriptionTextArea.setBounds(150, 340, 230, 100);
 
+        clearButton.setBounds(150, 480, 80, 30);
+        saveButton.setBounds(250, 480, 80, 30);
 
         // Adding widgets to panel
+        panel.add(clearButton);
+        panel.add(saveButton);
+
         panel.add(pantHeading);
         panel.add(descriptionLabel);
         panel.add(descriptionTextArea);
@@ -83,6 +106,14 @@ public class PantPanel {
         panel.add(statusLabel);
         panel.add(statusField);
 
+        clearButton.addActionListener(e -> {
+            inseamTextField.setText("");
+            waistTextField.setText("");
+            lengthTextField.setText("");
+            typeField.setSelectedIndex(0);
+            statusField.setSelectedIndex(0);
+            descriptionTextArea.setText("");
+        });
 
     }
 
