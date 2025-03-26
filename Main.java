@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.*;
 
 public class Main {
@@ -20,6 +18,17 @@ public class Main {
     private JLabel orderLabel;
     private JLabel orderIcon;
 
+    private JPanel viewPanel;
+    private JLabel viewLabel;
+    private JLabel viewIcon;
+
+    private JPanel settingsPanel;
+    private JLabel settingsLabel;
+    private JLabel settingsIcon;
+
+    private JPanel analysisPanel;
+    private JLabel analysisLabel;
+    private JLabel analysisIcon;
 
     public Main() {
 
@@ -39,25 +48,78 @@ public class Main {
         imageLabel.setBounds(10, 10, 736, 600);
 
         orderPanel = new JPanel();
+        viewPanel = new JPanel();
+        settingsPanel = new JPanel();
+        analysisPanel = new JPanel();
+
         orderPanel.setBackground(Color.GRAY);
+        viewPanel.setBackground(Color.GRAY);
+        analysisPanel.setBackground(Color.GRAY);
+        settingsPanel.setBackground(Color.GRAY);
+
         orderPanel.setLayout(null);
+        viewPanel.setLayout(null);
+        analysisPanel.setLayout(null);
+        settingsPanel.setLayout(null);
+
         orderPanel.setBounds(450, 150, 200, 200);
+        viewPanel.setBounds(750, 150, 200, 200);
+        analysisPanel.setBounds(450, 450, 200, 200);
+        settingsPanel.setBounds(750, 450, 200, 200);
 
         orderIcon = new JLabel( new ImageIcon("OrderIcon.png"));
+        viewIcon = new JLabel( new ImageIcon("table.png"));
+        analysisIcon = new JLabel(new ImageIcon("analysis.png"));
+        settingsIcon = new JLabel( new ImageIcon("settings.png"));
+
+
+        viewLabel = new JLabel("View");
+        viewLabel.setForeground(Color.BLACK);
+        viewLabel.setFont(new Font("Serif", Font.BOLD, 30));
+//        viewLabel.setOpaque(true);
+
 
         orderLabel = new JLabel("Order");
         orderLabel.setForeground(Color.BLACK);
         orderLabel.setFont(new Font("Serif", Font.BOLD, 30));
 //        orderLabel.setOpaque(true);
-        orderIcon.setBounds(40, 10, 100, 150);
+
+        analysisLabel = new JLabel("Analysis");
+        analysisLabel.setForeground(Color.BLACK);
+        analysisLabel.setFont(new Font("Serif", Font.BOLD, 20));
+//        analyticsLabel.setOpaque(true);
+
+        settingsLabel = new JLabel("Settings");
+        settingsLabel.setForeground(Color.BLACK);
+        settingsLabel.setFont(new Font("Serif", Font.BOLD, 20));
+//        orderLabel.setOpaque(true);
+
+
+
         orderLabel.setBounds(50, 150, 80, 30);
+        viewLabel.setBounds(50, 150, 80, 30);
+        analysisLabel.setBounds(50, 150, 80, 30);
+        settingsLabel.setBounds(50, 150, 80, 30);
+
+        orderIcon.setBounds(40, 10, 100, 150);
+        viewIcon.setBounds(40, 10, 140, 150);
+        analysisIcon.setBounds(40, 10, 150, 150);
+        settingsIcon.setBounds(40, 10, 150, 150);
+
+
 
 
         orderPanel.add(orderLabel);
         orderPanel.add(orderIcon);
 
+        viewPanel.add(viewLabel);
+        viewPanel.add(viewIcon);
 
+        settingsPanel.add(settingsLabel);
+        settingsPanel.add(settingsIcon);
 
+        analysisPanel.add(analysisLabel);
+        analysisPanel.add(analysisIcon);
 
         sideBarPanel = new SideBarPanel();
         customerPanel = new CustomerPanel();
@@ -123,12 +185,15 @@ public class Main {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                JOptionPane.showMessageDialog(frame, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
+//                JOptionPane.showMessageDialog(frame, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
                 // Proceed to the next screen or functionality
 
                 frame.getContentPane().removeAll();
                 frame.add(tailorDetailPanel.getPanel());
                 frame.add(orderPanel);
+                frame.add(viewPanel);
+                frame.add(settingsPanel);
+                frame.add(analysisPanel);
                 frame.revalidate();
                 frame.repaint();
 
