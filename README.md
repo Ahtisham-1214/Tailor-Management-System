@@ -19,3 +19,19 @@ So, tomorrow will work on backend in the end work on fronted
 # Day 4
 Work on frontend and added side bar and landing page.
 Added event handing and clear field functionality.
+
+# Day 5
+Worked on frontend and still working on database and backend strategies.
+![Database Design](day5_database.png)
+
+
+# Queries are required
+CREATE TABLE details (
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+shop_name VARCHAR(30),
+address VARCHAR(50),
+phone_no VARCHAR(11),
+email VARCHAR(30)
+);
+
+create table customer (name varchar(20), phone varchar(11) primary key);
