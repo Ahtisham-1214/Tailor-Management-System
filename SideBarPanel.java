@@ -7,6 +7,7 @@ public class SideBarPanel {
     private JLabel pantLabel;
     private JLabel coatLabel;
     private JLabel kameezShalwaarLabel;
+    private JButton backButton;
 
     public SideBarPanel() {
         panel = new JPanel();
@@ -18,6 +19,7 @@ public class SideBarPanel {
         pantLabel = new JLabel("Pant");
         coatLabel = new JLabel("Coat");
         kameezShalwaarLabel = new JLabel("Kameez Shalwaar");
+        backButton = new JButton("Back");
 
         shirtLabel.setFont(new Font("Arial", Font.BOLD, 20));
         pantLabel.setFont(new Font("Arial", Font.BOLD, 20));
@@ -28,28 +30,33 @@ public class SideBarPanel {
         pantLabel.setForeground(Color.DARK_GRAY);
         coatLabel.setForeground(Color.DARK_GRAY);
         kameezShalwaarLabel.setForeground(Color.DARK_GRAY);
+        backButton.setForeground(Color.DARK_GRAY);
 
         shirtLabel.setOpaque(true);
         pantLabel.setOpaque(true);
         coatLabel.setOpaque(true);
         kameezShalwaarLabel.setOpaque(true);
+        backButton.setOpaque(true);
 
         shirtLabel.setBackground(Color.WHITE);
         pantLabel.setBackground(Color.WHITE);
         coatLabel.setBackground(Color.WHITE);
         kameezShalwaarLabel.setBackground(Color.WHITE);
+        backButton.setBackground(Color.WHITE);
 
 
         shirtLabel.setBounds(0, 200, 250, 40);
         pantLabel.setBounds(0, 250, 250, 40);
         coatLabel.setBounds(0, 300, 250, 40);
         kameezShalwaarLabel.setBounds(0, 350, 250, 40);
+        backButton.setBounds(0, 20, 80, 40);
 
 
         panel.add(shirtLabel);
         panel.add(pantLabel);
         panel.add(coatLabel);
         panel.add(kameezShalwaarLabel);
+        panel.add(backButton);
 
 
     }
@@ -72,5 +79,9 @@ public class SideBarPanel {
 
     public JLabel getKameezShalwaarLabel() {
         return kameezShalwaarLabel;
+    }
+
+    public JButton getBackButton() {
+        return backButton;
     }
 }
