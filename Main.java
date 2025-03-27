@@ -13,6 +13,7 @@ public class Main {
     CoatPanel coatPanel;
     ShirtPanel shirtPanel;
     PantPanel pantPanel;
+    SetTailorDetailPanel setTailorDetailPanel;
 
     private JPanel orderPanel;
     private JLabel orderLabel;
@@ -67,10 +68,10 @@ public class Main {
         analysisPanel.setBounds(450, 450, 200, 200);
         settingsPanel.setBounds(750, 450, 200, 200);
 
-        orderIcon = new JLabel( new ImageIcon("OrderIcon.png"));
-        viewIcon = new JLabel( new ImageIcon("table.png"));
+        orderIcon = new JLabel(new ImageIcon("OrderIcon.png"));
+        viewIcon = new JLabel(new ImageIcon("table.png"));
         analysisIcon = new JLabel(new ImageIcon("analysis.png"));
-        settingsIcon = new JLabel( new ImageIcon("settings.png"));
+        settingsIcon = new JLabel(new ImageIcon("settings.png"));
 
 
         viewLabel = new JLabel("View");
@@ -95,7 +96,6 @@ public class Main {
 //        orderLabel.setOpaque(true);
 
 
-
         orderLabel.setBounds(50, 150, 80, 30);
         viewLabel.setBounds(50, 150, 80, 30);
         analysisLabel.setBounds(50, 150, 80, 30);
@@ -105,8 +105,6 @@ public class Main {
         viewIcon.setBounds(40, 10, 140, 150);
         analysisIcon.setBounds(40, 10, 150, 150);
         settingsIcon.setBounds(40, 10, 150, 150);
-
-
 
 
         orderPanel.add(orderLabel);
@@ -127,6 +125,9 @@ public class Main {
         kameezShalwaarPanel = new KameezShalwaarPanel();
         pantPanel = new PantPanel();
         shirtPanel = new ShirtPanel();
+        setTailorDetailPanel = new SetTailorDetailPanel();
+        loginPanel = new LoginPanel();
+        tailorDetailPanel = new TailorDetailPanel();
 
         // Welcome Panel
         welcomePanel = new JPanel();
@@ -139,8 +140,7 @@ public class Main {
         frame.add(welcomePanel);
         frame.setVisible(true);
 
-        loginPanel = new LoginPanel();
-        tailorDetailPanel = new TailorDetailPanel();
+
 
         // Timer to switch panels after 3 seconds
         Timer timer = new Timer(0, e -> {
@@ -154,10 +154,14 @@ public class Main {
         timer.start();
 
 
+        actionsAndListeners();
+
+    }
 
 
+    public static void main(String[] args) {
 
-        loginPanel.getLoginButton().addActionListener(e -> handleLogin());
+        new Main();
     }
 
     private void handleLogin() {
@@ -190,12 +194,7 @@ public class Main {
 
                 frame.getContentPane().removeAll();
                 frame.add(tailorDetailPanel.getPanel());
-                frame.add(orderPanel);
-                frame.add(viewPanel);
-                frame.add(settingsPanel);
-                frame.add(analysisPanel);
-                frame.revalidate();
-                frame.repaint();
+                landingWidgetsPanels(viewPanel, settingsPanel, analysisPanel, orderPanel);
 
 
             } else {
@@ -207,6 +206,20 @@ public class Main {
             JOptionPane.showMessageDialog(frame, "An error occurred while connecting to the database.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
+
+    }
+
+    private void landingWidgetsPanels(JPanel settingsPanel, JPanel analysisPanel, JPanel viewPanel, JPanel orderPanel) {
+        frame.add(orderPanel);
+        frame.add(settingsPanel);
+        frame.add(analysisPanel);
+        frame.add(viewPanel);
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    private void actionsAndListeners() {
+        loginPanel.getLoginButton().addActionListener(e -> handleLogin());
 
         sideBarPanel.getPantLabel().addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -249,6 +262,12 @@ public class Main {
             }
         });
 
+        sideBarPanel.getBackButton().addActionListener(e -> {
+            frame.getContentPane().removeAll();
+            frame.add(tailorDetailPanel.getPanel());
+            landingWidgetsPanels(settingsPanel, analysisPanel, viewPanel, orderPanel);
+        });
+
 
         orderPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -260,12 +279,15 @@ public class Main {
             }
         });
 
+        settingsPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                frame.getContentPane().removeAll();
+                frame.add(setTailorDetailPanel.getSetDetailpanel());
+                frame.add(tailorDetailPanel.getPanel());
 
-    }
-
-
-    public static void main(String[] args) {
-
-        Main main = new Main();
+                frame.revalidate();
+                frame.repaint();
+            }
+        });
     }
 }
