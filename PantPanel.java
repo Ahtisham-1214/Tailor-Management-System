@@ -11,6 +11,8 @@ public class PantPanel {
     private JLabel descriptionLabel;
     private JLabel pantHeading;
     private JLabel deliveryDateLabel;
+    private JLabel quantityLabel;
+
 
     private JButton clearButton;
     private JButton saveButton;
@@ -22,6 +24,8 @@ public class PantPanel {
     private JComboBox<String> typeField;
     private JComboBox<String> statusField;
     private JTextField deliveryDateTextField;
+    private JTextField quantityTextField;
+
 
     public PantPanel() {
         panel = new JPanel();
@@ -57,6 +61,7 @@ public class PantPanel {
         statusLabel = new JLabel("Status");
         inseamLabel = new JLabel("Inseam");
         deliveryDateLabel = new JLabel("Delivery Date");
+        quantityLabel = new JLabel("Quantity");
         descriptionLabel = new JLabel("Description");
 
 
@@ -65,6 +70,7 @@ public class PantPanel {
         lengthTextField = new JTextField();
         inseamTextField = new JTextField();
         deliveryDateTextField = new JTextField();
+        quantityTextField = new JTextField();
         typeField = new JComboBox<>(new String[]{"Select", "Straight", "Cuff"});
         statusField = new JComboBox<>(new String[]{"Select", "Pending", "Progress", "Completed", "Delivered"});
 
@@ -91,11 +97,14 @@ public class PantPanel {
         deliveryDateLabel.setBounds(50, 340, 100, 30);
         deliveryDateTextField.setBounds(150, 340, 200, 30);
 
-        descriptionLabel.setBounds(50, 380, 100, 30);
-        descriptionTextArea.setBounds(150, 380, 230, 100);
+        quantityLabel.setBounds(50, 380, 100, 30);
+        quantityTextField.setBounds(150, 380, 200, 30);
 
-        clearButton.setBounds(150, 500, 80, 30);
-        saveButton.setBounds(250, 500, 80, 30);
+        descriptionLabel.setBounds(50, 420, 100, 30);
+        descriptionTextArea.setBounds(150, 420, 230, 100);
+
+        clearButton.setBounds(150, 550, 80, 30);
+        saveButton.setBounds(250, 550, 80, 30);
 
         // Adding widgets to panel
         panel.add(clearButton);
@@ -116,11 +125,15 @@ public class PantPanel {
         panel.add(statusField);
         panel.add(deliveryDateLabel);
         panel.add(deliveryDateTextField);
+        panel.add(quantityLabel);
+        panel.add(quantityTextField);
 
         clearButton.addActionListener(e -> {
             inseamTextField.setText("");
             waistTextField.setText("");
             lengthTextField.setText("");
+            deliveryDateTextField.setText("");
+            quantityTextField.setText("");
             typeField.setSelectedIndex(0);
             statusField.setSelectedIndex(0);
             descriptionTextArea.setText("");

@@ -12,6 +12,8 @@ public class CoatPanel {
     private JLabel statusLabel;
     private JLabel deliveryDateLabel;
     private JLabel descriptionLabel;
+    private JLabel quantityLabel;
+
 
     private JButton clearButton;
     private JButton saveButton;
@@ -22,12 +24,13 @@ public class CoatPanel {
     private JTextField shoulderTextField;
     private JTextField deliveryDateTextField;
     private JTextArea descriptionField;
+    private JTextField quantityTextField;
     private JComboBox<String> statusField;
 
     public CoatPanel() {
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBounds(450, 100, 500, 550);
+        panel.setBounds(450, 100, 500, 600);
         panel.setBackground(new Color(169, 169, 169));
 
 
@@ -52,6 +55,7 @@ public class CoatPanel {
         shoulderLabel = new JLabel("Shoulder");
         statusLabel = new JLabel("Status");
         deliveryDateLabel = new JLabel("Delivery Date");
+        quantityLabel = new JLabel("Quantity");
         descriptionLabel = new JLabel("Description");
 
         chestTextField = new JTextField();
@@ -60,6 +64,7 @@ public class CoatPanel {
         shoulderTextField = new JTextField();
         statusField = new JComboBox<>(new String[]{"Select", "Pending", "Process", "Completed", "Delivered"});
         deliveryDateTextField = new JTextField();
+        quantityTextField = new JTextField();
         descriptionField = new JTextArea();
 
 
@@ -83,11 +88,14 @@ public class CoatPanel {
         deliveryDateLabel.setBounds(50, 340, 100, 30);
         deliveryDateTextField.setBounds(150, 340, 200, 30);
 
-        descriptionLabel.setBounds(50, 380, 100, 30);
-        descriptionField.setBounds(150, 380, 230, 100);
+        quantityLabel.setBounds(50, 380, 100, 30);
+        quantityTextField.setBounds(150, 380, 200, 30);
 
-        clearButton.setBounds(150, 500, 80, 30);
-        saveButton.setBounds(250, 500, 80, 30);
+        descriptionLabel.setBounds(50, 420, 100, 30);
+        descriptionField.setBounds(150, 420, 230, 100);
+
+        clearButton.setBounds(150, 550, 80, 30);
+        saveButton.setBounds(250, 550, 80, 30);
 
 
 
@@ -110,6 +118,9 @@ public class CoatPanel {
         panel.add(descriptionField);
         panel.add(deliveryDateLabel);
         panel.add(deliveryDateTextField);
+        panel.add(quantityLabel);
+        panel.add(quantityTextField);
+
 
 
         clearButton.addActionListener(e -> {
@@ -118,6 +129,8 @@ public class CoatPanel {
             sleevesTextField.setText("");
             shoulderTextField.setText("");
             descriptionField.setText("");
+            deliveryDateTextField.setText("");
+            quantityTextField.setText("");
             statusField.setSelectedIndex(0);
         });
     }
