@@ -10,6 +10,7 @@ public class PantPanel {
     private JLabel inseamLabel;
     private JLabel descriptionLabel;
     private JLabel pantHeading;
+    private JLabel deliveryDateLabel;
 
     private JButton clearButton;
     private JButton saveButton;
@@ -20,6 +21,7 @@ public class PantPanel {
     private JTextField inseamTextField;
     private JComboBox<String> typeField;
     private JComboBox<String> statusField;
+    private JTextField deliveryDateTextField;
 
     public PantPanel() {
         panel = new JPanel();
@@ -54,12 +56,15 @@ public class PantPanel {
         typeLabel = new JLabel("Type");
         statusLabel = new JLabel("Status");
         inseamLabel = new JLabel("Inseam");
+        deliveryDateLabel = new JLabel("Delivery Date");
         descriptionLabel = new JLabel("Description");
+
 
         descriptionTextArea = new JTextArea();
         waistTextField = new JTextField();
         lengthTextField = new JTextField();
         inseamTextField = new JTextField();
+        deliveryDateTextField = new JTextField();
         typeField = new JComboBox<>(new String[]{"Select", "Straight", "Cuff"});
         statusField = new JComboBox<>(new String[]{"Select", "Pending", "Progress", "Completed", "Delivered"});
 
@@ -82,11 +87,15 @@ public class PantPanel {
         statusLabel.setBounds(50, 290, 100, 30);
         statusField.setBounds(150, 290, 200, 30);
 
-        descriptionLabel.setBounds(50, 340, 100, 30);
-        descriptionTextArea.setBounds(150, 340, 230, 100);
 
-        clearButton.setBounds(150, 480, 80, 30);
-        saveButton.setBounds(250, 480, 80, 30);
+        deliveryDateLabel.setBounds(50, 340, 100, 30);
+        deliveryDateTextField.setBounds(150, 340, 200, 30);
+
+        descriptionLabel.setBounds(50, 380, 100, 30);
+        descriptionTextArea.setBounds(150, 380, 230, 100);
+
+        clearButton.setBounds(150, 500, 80, 30);
+        saveButton.setBounds(250, 500, 80, 30);
 
         // Adding widgets to panel
         panel.add(clearButton);
@@ -105,6 +114,8 @@ public class PantPanel {
         panel.add(typeField);
         panel.add(statusLabel);
         panel.add(statusField);
+        panel.add(deliveryDateLabel);
+        panel.add(deliveryDateTextField);
 
         clearButton.addActionListener(e -> {
             inseamTextField.setText("");

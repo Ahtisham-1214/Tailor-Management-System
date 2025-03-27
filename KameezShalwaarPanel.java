@@ -11,6 +11,7 @@ public class KameezShalwaarPanel {
     private JLabel shoulderLabel;
     private JLabel neckLabel;
     private JLabel collarTypeLabel;
+    private JLabel deliveryDateLabel;
     private JLabel descriptionLabel;
     private JLabel statusLabel;
     private JLabel kameezShalwaarHeading;
@@ -23,6 +24,7 @@ public class KameezShalwaarPanel {
     private JComboBox<String> kameezTypeField;
     private JComboBox<String> collarTypeField;
     private JComboBox<String> statusField;
+    private JTextField deliveryDateTextField;
     private JTextArea descriptionField;
     private JButton clearButton;
     private JButton saveButton;
@@ -56,6 +58,7 @@ public class KameezShalwaarPanel {
         neckLabel = new JLabel("Neck");
         collarTypeLabel = new JLabel("Collar Type");
         statusLabel = new JLabel("Status");
+        deliveryDateLabel = new JLabel("Delivery Date");
         descriptionLabel = new JLabel("Description");
 
 
@@ -65,6 +68,7 @@ public class KameezShalwaarPanel {
         neckTextField = new JTextField();
         collarTypeField = new JComboBox<>(new String[]{"Select", "Cooper", "French", "Sherwani"});
         statusField = new JComboBox<>(new String[]{"Select", "Pending", "Process", "Completed", "Delivered"});
+        deliveryDateTextField = new JTextField();
         descriptionField = new JTextArea();
         sleevesTypeField = new JComboBox<>(new String[]{"Select", "Square", "Oval"});
         kameezTypeField = new JComboBox<>(new String[]{"Select", "Square", "Oval"});
@@ -75,25 +79,36 @@ public class KameezShalwaarPanel {
 
         kameezLengthLabel.setBounds(20, 60, 100, 30);
         kameezLengthTextField.setBounds(130, 60, 200, 30);
+
         sleevesLabel.setBounds(20, 100, 100, 30);
         sleevesTextField.setBounds(130, 100, 200, 30);
+
         shoulderLabel.setBounds(20, 140, 230, 30);
         shoulderTextField.setBounds(130, 140, 200, 30);
+
         neckLabel.setBounds(20, 180, 100, 30);
         neckTextField.setBounds(130, 180, 200, 30);
+
         collarTypeLabel.setBounds(20, 220, 230, 30);
         collarTypeField.setBounds(130, 220, 200, 30);
+
         sleevesTypeLabel.setBounds(20, 270, 230, 30);
         sleevesTypeField.setBounds(130, 270, 200, 30);
+
         kameezTypeLabel.setBounds(20, 320, 230, 30);
         kameezTypeField.setBounds(130, 320, 200, 30);
+
         statusLabel.setBounds(20, 370, 230, 30);
         statusField.setBounds(130, 370, 200, 30);
-        descriptionLabel.setBounds(20, 420, 460, 30);
-        descriptionField.setBounds(130, 420, 200, 100);
 
-        clearButton.setBounds(130, 550, 80, 30);
-        saveButton.setBounds(230, 550, 80, 30);
+        deliveryDateLabel.setBounds(20, 420, 230, 30);
+        deliveryDateTextField.setBounds(130, 420, 200, 30);
+
+        descriptionLabel.setBounds(20, 480, 460, 30);
+        descriptionField.setBounds(130, 480, 200, 100);
+
+        clearButton.setBounds(130, 600, 80, 30);
+        saveButton.setBounds(230, 600, 80, 30);
 
 
         
@@ -111,6 +126,7 @@ public class KameezShalwaarPanel {
         panel.add(neckLabel);
         panel.add(collarTypeLabel);
         panel.add(statusLabel);
+        panel.add(deliveryDateLabel);
         panel.add(descriptionLabel);
 
         panel.add(kameezLengthTextField);
@@ -119,6 +135,7 @@ public class KameezShalwaarPanel {
         panel.add(neckTextField);
         panel.add(collarTypeField);
         panel.add(statusField);
+        panel.add(deliveryDateTextField);
         panel.add(descriptionField);
         panel.add(sleevesTypeField);
         panel.add(kameezTypeField);

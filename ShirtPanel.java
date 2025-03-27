@@ -11,6 +11,7 @@ public class ShirtPanel {
     private JLabel descriptionLabel;
     private JLabel sleeveLengthLabel;
     private JLabel shirtLengthLabel;
+    private JLabel deliveryDateLabel;
 
     private JTextField chestTextField;
     private JTextField neckTextField;
@@ -23,11 +24,13 @@ public class ShirtPanel {
     private JLabel shirtHeading;
     private JButton clearButton;
     private JButton saveButton;
+    private JTextField deliveryDateTextField;
+
 
     public ShirtPanel() {
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBounds(400, 100, 500, 550);
+        panel.setBounds(400, 100, 500, 650);
         panel.setBackground(new Color(169, 169, 169));
 
 
@@ -54,6 +57,7 @@ public class ShirtPanel {
         shirtLengthLabel = new JLabel("Shirt Length");
         cuffTypeLabel = new JLabel("Cuff Type");
         statusLabel = new JLabel("Status");
+        deliveryDateLabel = new JLabel("Delivery Date");
         descriptionLabel = new JLabel("Description");
 
         chestTextField = new JTextField();
@@ -63,6 +67,7 @@ public class ShirtPanel {
         shirtLengthField = new JTextField();
         cuffTypeField = new JComboBox<>(new String[]{"Select","Half Sleeves", "Square", "Round"});
         statusTextField = new JComboBox<>(new String[]{"Select","Pending", "Process", "Completed", "Delivered"});
+        deliveryDateTextField = new JTextField();
         descriptionField = new JTextArea();
 
         chestLabel.setBounds(10, 60, 100, 30);
@@ -72,7 +77,8 @@ public class ShirtPanel {
         shirtLengthLabel.setBounds(10, 220, 100, 30);
         cuffTypeLabel.setBounds(10, 260, 100, 30);
         statusLabel.setBounds(10, 300, 100, 30);
-        descriptionLabel.setBounds(10, 340, 100, 30);
+        deliveryDateLabel.setBounds(10, 340, 100, 30);
+        descriptionLabel.setBounds(10, 380, 100, 30);
 
         chestTextField.setBounds(120, 60, 150, 30);
         neckTextField.setBounds(120, 100, 150, 30);
@@ -81,10 +87,11 @@ public class ShirtPanel {
         shirtLengthField.setBounds(120, 220, 150, 30);
         cuffTypeField.setBounds(120, 260, 150, 30);
         statusTextField.setBounds(120, 300, 150, 30);
-        descriptionField.setBounds(120, 340, 230, 100);
+        deliveryDateTextField.setBounds(120, 340, 150, 30);
+        descriptionField.setBounds(120, 380, 230, 100);
 
-        clearButton.setBounds(120, 470,80, 30);
-        saveButton.setBounds(220, 470,80, 30);
+        clearButton.setBounds(120, 500,80, 30);
+        saveButton.setBounds(220, 500,80, 30);
 
 
 
@@ -100,6 +107,7 @@ public class ShirtPanel {
         panel.add(sleeveLengthField);
         panel.add(shirtLengthField);
         panel.add(cuffTypeField);
+        panel.add(deliveryDateTextField);
         panel.add(descriptionField);
 
 
@@ -108,6 +116,7 @@ public class ShirtPanel {
         panel.add(shoulderLabel);
         panel.add(statusLabel);
         panel.add(cuffTypeLabel);
+        panel.add(deliveryDateLabel);
         panel.add(descriptionLabel);
         panel.add(sleeveLengthLabel);
         panel.add(shirtLengthLabel);
