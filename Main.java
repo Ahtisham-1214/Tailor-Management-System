@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
+import java.util.LinkedList;
 
 public class Main {
     private JFrame frame;
@@ -30,9 +31,10 @@ public class Main {
     private JPanel analysisPanel;
     private JLabel analysisLabel;
     private JLabel analysisIcon;
+    private static LinkedList<Customer> orders;
 
     public Main() {
-
+        orders = new LinkedList<>();
         // Frame
         frame = new JFrame("Tailor Management System");
         frame.setLayout(null);
@@ -141,7 +143,6 @@ public class Main {
         frame.setVisible(true);
 
 
-
         // Timer to switch panels after 3 seconds
         Timer timer = new Timer(0, e -> {
             frame.remove(welcomePanel);
@@ -155,13 +156,15 @@ public class Main {
 
 
         actionsAndListeners();
-
     }
 
+    public static LinkedList<Customer> getOrders() {
+        return orders;
+    }
 
     public static void main(String[] args) {
 
-        new Main();
+        Main main = new Main();
     }
 
     private void handleLogin() {
@@ -219,8 +222,18 @@ public class Main {
     }
 
     private void actionsAndListeners() {
+
         loginPanel.getLoginButton().addActionListener(e -> handleLogin());
 
+        tailorDetailPanel.getBackButton().addActionListener(e -> {
+            frame.getContentPane().removeAll();
+            frame.add(tailorDetailPanel.getPanel());
+            loginPanel.getUserNameTextField().setText("");
+            loginPanel.getPasswordTextField().setText("");
+            frame.add(loginPanel.getPanel());
+            frame.revalidate();
+            frame.repaint();
+        });
         sideBarPanel.getPantLabel().addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {

@@ -1,9 +1,20 @@
 public class Pant implements Measurement{
     private float waist;
     private float length;
-    private byte type; // for Straight fit, 1 for Cuff
+    private byte type; // 1 for Straight fit, 2 for Cuff
     private float inseam;
-    private byte status; // 0 for pending, 1 for processing, 2 for completed, 3 for delivered
+    private byte status; // 1 for pending, 2 for processing, 3 for completed, 4 for delivered
+    private String description;
+
+
+    public Pant(float waist, float length, byte type, float inseam, byte status, String description) {
+        this.waist = waist;
+        this.length = length;
+        this.type = type;
+        this.inseam = inseam;
+        this.status = status;
+        this.description = description;
+    }
 
     public float getWaist() {
         return waist;
@@ -50,17 +61,6 @@ public class Pant implements Measurement{
     }
 
     public void setDescription(String description) {
-        this.description = description;
-    }
-
-    private String description;
-
-    public Pant(float waist, float length, byte type, float inseam, byte status, String description) {
-        this.waist = waist;
-        this.length = length;
-        this.type = type;
-        this.inseam = inseam;
-        this.status = status;
         this.description = description;
     }
 }

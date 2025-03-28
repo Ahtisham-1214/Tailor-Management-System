@@ -11,7 +11,7 @@ public class KameezShalwaarPanel {
     private JLabel trouserWidthLabel;
     private JLabel kameezLengthLabel;
     private JLabel sleevesLabel;
-    private JLabel sleevesTypeLabel;
+    private JLabel cuffTypeLabel;
     private JLabel kameezTypeLabel;
     private JLabel shoulderLabel;
     private JLabel neckLabel;
@@ -29,7 +29,7 @@ public class KameezShalwaarPanel {
     private JTextField sleevesTextField;
     private JTextField shoulderTextField;
     private JTextField neckTextField;
-    private JComboBox<String> sleevesTypeField;
+    private JComboBox<String> cuffTypeField;
     private JComboBox<String> kameezTypeField;
     private JComboBox<String> collarTypeField;
     private JComboBox<String> statusField;
@@ -65,7 +65,7 @@ public class KameezShalwaarPanel {
         trouserTypeLabel = new JLabel("Trouser Type");
         kameezLengthLabel = new JLabel("Kameez Length");
         sleevesLabel = new JLabel("Sleeves");
-        sleevesTypeLabel = new JLabel("Sleeves Type");
+        cuffTypeLabel = new JLabel("Sleeves Type");
         kameezTypeLabel = new JLabel("Kameez Type");
         shoulderLabel = new JLabel("Shoulder");
         neckLabel = new JLabel("Neck");
@@ -88,7 +88,7 @@ public class KameezShalwaarPanel {
         deliveryDateTextField = new JTextField("YYYY-MM-DD");
         quantityTextField = new JTextField();
         descriptionField = new JTextArea();
-        sleevesTypeField = new JComboBox<>(new String[]{"Select", "Square", "Oval"});
+        cuffTypeField = new JComboBox<>(new String[]{"Select", "Square", "Oval"});
         kameezTypeField = new JComboBox<>(new String[]{"Select", "Square", "Oval"});
 
 
@@ -124,8 +124,8 @@ public class KameezShalwaarPanel {
         collarTypeLabel.setBounds(20, 220, 230, 30);
         collarTypeField.setBounds(130, 220, 200, 30);
 
-        sleevesTypeLabel.setBounds(20, 270, 230, 30);
-        sleevesTypeField.setBounds(130, 270, 200, 30);
+        cuffTypeLabel.setBounds(20, 270, 230, 30);
+        cuffTypeField.setBounds(130, 270, 200, 30);
 
         kameezTypeLabel.setBounds(20, 320, 230, 30);
         kameezTypeField.setBounds(130, 320, 200, 30);
@@ -147,7 +147,7 @@ public class KameezShalwaarPanel {
         panel.add(kameezShalwaarHeading);
         panel.add(kameezLengthLabel);
         panel.add(sleevesLabel);
-        panel.add(sleevesTypeLabel);
+        panel.add(cuffTypeLabel);
         panel.add(kameezTypeLabel);
         panel.add(shoulderLabel);
         panel.add(neckLabel);
@@ -166,7 +166,7 @@ public class KameezShalwaarPanel {
         panel.add(deliveryDateTextField);
         panel.add(quantityTextField);
         panel.add(descriptionField);
-        panel.add(sleevesTypeField);
+        panel.add(cuffTypeField);
         panel.add(kameezTypeField);
 
         panel.add(trouserLengthLabel);

@@ -62,11 +62,35 @@ public class CustomerPanel {
             nameTextField.setText("");
             phoneTextField.setText("");
         });
+
+        saveButton.addActionListener(e -> {
+            if (getNameTextField().getText().isBlank() || getPhoneTextField().getText().isBlank()) {
+                JOptionPane.showMessageDialog(null, "Please fill all the fields");
+            } else if (getPhoneTextField().getText().length() != 11) {
+                JOptionPane.showMessageDialog(null, "Enter 11 Digit Phone Number");
+            } else {
+                Main.getOrders().add(new Customer(getNameTextField().getText(), getPhoneTextField().getText()));
+                JOptionPane.showMessageDialog(null, "Customer added successfully");
+            }
+        });
+
     }
 
 
 
     public JPanel getPanel() {
         return panel;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton;
+    }
+
+    public JTextField getNameTextField() {
+        return nameTextField;
+    }
+
+    public JTextField getPhoneTextField() {
+        return phoneTextField;
     }
 }

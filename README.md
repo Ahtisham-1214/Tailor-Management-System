@@ -35,3 +35,72 @@ email VARCHAR(30)
 );
 
 create table customer (name varchar(20), phone varchar(11) primary key);
+
+# Day 6
+Completed database and added necessary field restrictions to program.
+![Database](database.png)
+# Queries are required
+create table pant(id int auto_increment primary key,
+waist float not null,
+length float not null,
+inseam float not null,
+type tinyint not null,
+status tinyint not null,
+quantity int not null,
+description varchar(100),
+order_date date not null,
+delivery_date date not null,
+phone varchar(11) not null,
+foreign key (phone) references customer(phone)
+);
+
+create table coat(id int auto_increment primary key,
+chest float not null,
+waist float not null,
+sleeves float not null,
+shoulder float not null,
+status tinyint not null,
+quantity int not null,
+description varchar(100),
+order_date date not null,
+delivery_date date not null,
+phone varchar(11) not null,
+foreign key (phone) references customer(phone)
+);
+
+create table shirt(id int auto_increment primary key,
+chest float not null,
+neck float not null,
+waist float not null,
+shoulder float not null,
+sleeves_length float not null,
+shirt_length float not null,
+cuff_type tinyint not null,
+status tinyint not null,
+quantity int not null,
+description varchar(100),
+order_date date not null,
+delivery_date date not null,
+phone varchar(11) not null,
+foreign key (phone) references customer(phone)
+);
+
+create table kameez_shalwaar(id int auto_increment primary key,
+kameez_length float not null,
+sleeves_length float not null,
+shoulder float not null,
+neck float not null,
+collar_type tinyint not null,
+cuff_type tinyint not null,
+kameez_type tinyint not null,
+trouser_length float not null,
+trouser_width float not null,
+trouser_type tinyint not null,
+status tinyint not null,
+quantity int not null,
+description varchar(100),
+order_date date not null,
+delivery_date date not null,
+phone varchar(11) not null,
+foreign key (phone) references customer(phone)
+);
