@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class PantPanel {
     private JPanel panel;
@@ -34,7 +36,6 @@ public class PantPanel {
         panel.setBackground(new Color(169, 169, 169));
 
 
-
         // Widgets
         clearButton = new JButton("Clear");
 //        clearButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -47,8 +48,6 @@ public class PantPanel {
         saveButton.setBackground(Color.WHITE);
         saveButton.setForeground(Color.DARK_GRAY);
         saveButton.setOpaque(true);
-
-
 
 
         pantHeading = new JLabel("Pant");
@@ -69,7 +68,7 @@ public class PantPanel {
         waistTextField = new JTextField();
         lengthTextField = new JTextField();
         inseamTextField = new JTextField();
-        deliveryDateTextField = new JTextField();
+        deliveryDateTextField = new JTextField("YYYY-MM-DD");
         quantityTextField = new JTextField();
         typeField = new JComboBox<>(new String[]{"Select", "Straight", "Cuff"});
         statusField = new JComboBox<>(new String[]{"Select", "Pending", "Progress", "Completed", "Delivered"});
@@ -138,10 +137,68 @@ public class PantPanel {
             statusField.setSelectedIndex(0);
             descriptionTextArea.setText("");
         });
+        deliveryDateTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (deliveryDateTextField.getText().equals("YYYY-MM-DD"))
+                    deliveryDateTextField.setText("");
+            }
 
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (deliveryDateTextField.getText().isEmpty())
+                    deliveryDateTextField.setText("YYYY-MM-DD");
+            }
+        });
+
+        saveButton.addActionListener(e->{
+            if (getWaistTextField().getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Please Enter Waist");
+            else if (getLengthTextField().getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Please Enter Length");
+            else if (getInseamTextField().getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Please Enter Inseam");
+
+        });
     }
 
     public JPanel getPanel() {
         return panel;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton;
+    }
+
+    public JTextArea getDescriptionTextArea() {
+        return descriptionTextArea;
+    }
+
+    public JTextField getWaistTextField() {
+        return waistTextField;
+    }
+
+    public JTextField getLengthTextField() {
+        return lengthTextField;
+    }
+
+    public JTextField getInseamTextField() {
+        return inseamTextField;
+    }
+
+    public JComboBox<String> getTypeField() {
+        return typeField;
+    }
+
+    public JComboBox<String> getStatusField() {
+        return statusField;
+    }
+
+    public JTextField getDeliveryDateTextField() {
+        return deliveryDateTextField;
+    }
+
+    public JTextField getQuantityTextField() {
+        return quantityTextField;
     }
 }

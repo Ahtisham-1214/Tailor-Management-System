@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class ShirtPanel {
     private JPanel panel;
@@ -69,9 +71,9 @@ public class ShirtPanel {
         shoulderTextField = new JTextField();
         sleeveLengthField = new JTextField();
         shirtLengthField = new JTextField();
-        cuffTypeField = new JComboBox<>(new String[]{"Select","Half Sleeves", "Square", "Round"});
-        statusTextField = new JComboBox<>(new String[]{"Select","Pending", "Process", "Completed", "Delivered"});
-        deliveryDateTextField = new JTextField();
+        cuffTypeField = new JComboBox<>(new String[]{"Select", "Half Sleeves", "Square", "Round"});
+        statusTextField = new JComboBox<>(new String[]{"Select", "Pending", "Process", "Completed", "Delivered"});
+        deliveryDateTextField = new JTextField("YYYY-MM-DD");
         quantityTextField = new JTextField();
         descriptionField = new JTextArea();
 
@@ -97,9 +99,8 @@ public class ShirtPanel {
         quantityTextField.setBounds(120, 380, 150, 30);
         descriptionField.setBounds(120, 420, 230, 100);
 
-        clearButton.setBounds(120, 550,80, 30);
-        saveButton.setBounds(220, 550,80, 30);
-
+        clearButton.setBounds(120, 550, 80, 30);
+        saveButton.setBounds(220, 550, 80, 30);
 
 
         panel.add(saveButton);
@@ -131,7 +132,7 @@ public class ShirtPanel {
         panel.add(shirtLengthLabel);
 
 
-        clearButton.addActionListener(e ->{
+        clearButton.addActionListener(e -> {
             chestTextField.setText("");
             neckTextField.setText("");
             shoulderTextField.setText("");
@@ -142,6 +143,31 @@ public class ShirtPanel {
             cuffTypeField.setSelectedIndex(0);
             statusTextField.setSelectedIndex(0);
             descriptionField.setText("");
+        });
+        saveButton.addActionListener(e -> {
+            if (chestTextField.getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Enter a Chest", "Chest Error", JOptionPane.ERROR_MESSAGE);
+            else if (neckTextField.getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Enter Neck", "Neck Error", JOptionPane.ERROR_MESSAGE);
+            else if (shoulderTextField.getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Enter Shoulder", "Shoulder Error", JOptionPane.ERROR_MESSAGE);
+            else if (sleeveLengthField.getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Enter Sleeve Length", "Sleeve Length Error", JOptionPane.ERROR_MESSAGE);
+            else if (shirtLengthField.getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Enter Shirt Length", "Shirt Length Error", JOptionPane.ERROR_MESSAGE);
+        });
+        deliveryDateTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (deliveryDateTextField.getText().equals("YYYY-MM-DD"))
+                    deliveryDateTextField.setText("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (deliveryDateTextField.getText().isEmpty())
+                    deliveryDateTextField.setText("YYYY-MM-DD");
+            }
         });
 
     }

@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class CoatPanel {
     private JPanel panel;
@@ -63,7 +65,7 @@ public class CoatPanel {
         sleevesTextField = new JTextField();
         shoulderTextField = new JTextField();
         statusField = new JComboBox<>(new String[]{"Select", "Pending", "Process", "Completed", "Delivered"});
-        deliveryDateTextField = new JTextField();
+        deliveryDateTextField = new JTextField("YYYY-MM-DD");
         quantityTextField = new JTextField();
         descriptionField = new JTextArea();
 
@@ -133,6 +135,30 @@ public class CoatPanel {
             quantityTextField.setText("");
             statusField.setSelectedIndex(0);
         });
+        saveButton.addActionListener(e->{
+            if (chestTextField.getText().isBlank()) 
+                JOptionPane.showMessageDialog(null, "Enter Chest Field", "Chest Error", JOptionPane.ERROR_MESSAGE);
+            else if (waistTextField.getText().isBlank())
+                    JOptionPane.showMessageDialog(null, "Enter Waist Field", "Waist Error", JOptionPane.ERROR_MESSAGE);
+            else if (sleevesTextField.getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Enter Sleeve Field", "Sleeve Error", JOptionPane.ERROR_MESSAGE);
+            else if (shoulderTextField.getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Enter Shoulder Field", "Shoulder Error", JOptionPane.ERROR_MESSAGE);
+        });
+        deliveryDateTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (deliveryDateTextField.getText().equals("YYYY-MM-DD"))
+                    deliveryDateTextField.setText("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (deliveryDateTextField.getText().isEmpty())
+                    deliveryDateTextField.setText("YYYY-MM-DD");
+            }
+        });
+
     }
 
     public JPanel getPanel() {

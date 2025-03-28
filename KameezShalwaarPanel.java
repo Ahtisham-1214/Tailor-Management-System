@@ -1,9 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class KameezShalwaarPanel {
     private JPanel panel;
 
+    private JLabel trouserTypeLabel;
+    private JLabel trouserLengthLabel;
+    private JLabel trouserWidthLabel;
     private JLabel kameezLengthLabel;
     private JLabel sleevesLabel;
     private JLabel sleevesTypeLabel;
@@ -17,6 +22,9 @@ public class KameezShalwaarPanel {
     private JLabel statusLabel;
     private JLabel kameezShalwaarHeading;
 
+    private JComboBox<String> trouserTypeField; // 1 for shalwaar 2 for Pajama
+    private JTextField trouserLengthTextField;
+    private JTextField trouserWidthTextField;
     private JTextField kameezLengthTextField;
     private JTextField sleevesTextField;
     private JTextField shoulderTextField;
@@ -30,10 +38,11 @@ public class KameezShalwaarPanel {
     private JTextField quantityTextField;
     private JButton clearButton;
     private JButton saveButton;
+
     public KameezShalwaarPanel() {
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBounds(450, 50, 650, 750);
+        panel.setBounds(450, 30, 850, 650);
         panel.setBackground(new Color(188, 208, 241, 255));
 
         kameezShalwaarHeading = new JLabel("Kameez Shalwaar");
@@ -51,7 +60,9 @@ public class KameezShalwaarPanel {
         saveButton.setOpaque(true);
 
 
-
+        trouserLengthLabel = new JLabel("Trouser Length");
+        trouserWidthLabel = new JLabel("Trouser Width");
+        trouserTypeLabel = new JLabel("Trouser Type");
         kameezLengthLabel = new JLabel("Kameez Length");
         sleevesLabel = new JLabel("Sleeves");
         sleevesTypeLabel = new JLabel("Sleeves Type");
@@ -69,14 +80,16 @@ public class KameezShalwaarPanel {
         sleevesTextField = new JTextField();
         shoulderTextField = new JTextField();
         neckTextField = new JTextField();
+        trouserLengthTextField = new JTextField();
+        trouserWidthTextField = new JTextField();
+        trouserTypeField = new JComboBox<>(new String[]{"Select", "Shalwaar", "Pajama"});
         collarTypeField = new JComboBox<>(new String[]{"Select", "Cooper", "French", "Sherwani"});
         statusField = new JComboBox<>(new String[]{"Select", "Pending", "Process", "Completed", "Delivered"});
-        deliveryDateTextField = new JTextField();
+        deliveryDateTextField = new JTextField("YYYY-MM-DD");
         quantityTextField = new JTextField();
         descriptionField = new JTextArea();
         sleevesTypeField = new JComboBox<>(new String[]{"Select", "Square", "Oval"});
         kameezTypeField = new JComboBox<>(new String[]{"Select", "Square", "Oval"});
-
 
 
         kameezShalwaarHeading.setBounds(50, 10, 600, 30);
@@ -84,14 +97,29 @@ public class KameezShalwaarPanel {
         kameezLengthLabel.setBounds(20, 60, 100, 30);
         kameezLengthTextField.setBounds(130, 60, 200, 30);
 
+        trouserLengthLabel.setBounds(400, 60, 100, 30);
+        trouserLengthTextField.setBounds(530, 60, 200, 30);
+
         sleevesLabel.setBounds(20, 100, 100, 30);
         sleevesTextField.setBounds(130, 100, 200, 30);
+
+        trouserWidthLabel.setBounds(400, 100, 100, 30);
+        trouserWidthTextField.setBounds(530, 100, 200, 30);
 
         shoulderLabel.setBounds(20, 140, 230, 30);
         shoulderTextField.setBounds(130, 140, 200, 30);
 
+        trouserTypeLabel.setBounds(400, 140, 100, 30);
+        trouserTypeField.setBounds(530, 140, 200, 30);
+
         neckLabel.setBounds(20, 180, 100, 30);
         neckTextField.setBounds(130, 180, 200, 30);
+
+        descriptionLabel.setBounds(400, 180, 460, 30);
+        descriptionField.setBounds(530, 180, 200, 100);
+
+        clearButton.setBounds(530, 310, 80, 30);
+        saveButton.setBounds(630, 310, 80, 30);
 
         collarTypeLabel.setBounds(20, 220, 230, 30);
         collarTypeField.setBounds(130, 220, 200, 30);
@@ -109,18 +137,10 @@ public class KameezShalwaarPanel {
         deliveryDateTextField.setBounds(130, 420, 200, 30);
 
         quantityLabel.setBounds(20, 470, 230, 30);
-        quantityTextField.setBounds(130, 470, 200,30);
-
-        descriptionLabel.setBounds(20, 510, 460, 30);
-        descriptionField.setBounds(130, 510, 200, 100);
-
-        clearButton.setBounds(130, 620, 80, 30);
-        saveButton.setBounds(230, 620, 80, 30);
+        quantityTextField.setBounds(130, 470, 200, 30);
 
 
-        
-        
-        
+
 
         panel.add(saveButton);
         panel.add(clearButton);
@@ -149,6 +169,14 @@ public class KameezShalwaarPanel {
         panel.add(sleevesTypeField);
         panel.add(kameezTypeField);
 
+        panel.add(trouserLengthLabel);
+        panel.add(trouserLengthTextField);
+        panel.add(trouserWidthLabel);
+        panel.add(trouserWidthTextField);
+        panel.add(trouserTypeLabel);
+        panel.add(trouserTypeField);
+
+
         clearButton.addActionListener(e -> {
             kameezLengthTextField.setText("");
             sleevesTextField.setText("");
@@ -159,6 +187,38 @@ public class KameezShalwaarPanel {
             collarTypeField.setSelectedIndex(0);
             statusField.setSelectedIndex(0);
             descriptionField.setText("");
+        });
+
+        saveButton.addActionListener(e -> {
+            if (kameezLengthTextField.getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Enter Kameez Length", "Kameez Error", JOptionPane.ERROR_MESSAGE);
+            else if (sleevesTextField.getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Enter Sleeves", "Sleeves Error", JOptionPane.ERROR_MESSAGE);
+            else if (shoulderTextField.getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Enter Shoulder", "Shoulder Error", JOptionPane.ERROR_MESSAGE);
+            else if (neckTextField.getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Enter Neck", "Neck Error", JOptionPane.ERROR_MESSAGE);
+            else if (trouserLengthTextField.getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Enter Trouser Length", "Trouser Length Error", JOptionPane.ERROR_MESSAGE);
+            else if (trouserWidthTextField.getText().isBlank())
+                JOptionPane.showMessageDialog(null, "Enter Trouser Width", "Trouser Width Error", JOptionPane.ERROR_MESSAGE);
+            else if (trouserTypeField.getSelectedIndex() == 0)
+                JOptionPane.showMessageDialog(null, "Select Trouser Type", "Trouser Type Error", JOptionPane.ERROR_MESSAGE);
+
+        });
+
+        deliveryDateTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (deliveryDateTextField.getText().equals("YYYY-MM-DD"))
+                    deliveryDateTextField.setText("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (deliveryDateTextField.getText().isEmpty())
+                    deliveryDateTextField.setText("YYYY-MM-DD");
+            }
         });
 
 
