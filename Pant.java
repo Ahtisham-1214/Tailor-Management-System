@@ -1,3 +1,5 @@
+import java.util.Date;
+
 public class Pant implements Measurement{
     private float waist;
     private float length;
@@ -5,15 +7,21 @@ public class Pant implements Measurement{
     private float inseam;
     private byte status; // 1 for pending, 2 for processing, 3 for completed, 4 for delivered
     private String description;
+    private int quantity;
+    private Date orderDate;
+    private Date deliveryDate;
 
 
-    public Pant(float waist, float length, byte type, float inseam, byte status, String description) {
+    public Pant(float waist, float length, byte type, float inseam, byte status, String description, int quantity, Date orderDate, Date deliveryDate) {
         this.waist = waist;
         this.length = length;
         this.type = type;
         this.inseam = inseam;
         this.status = status;
         this.description = description;
+        this.quantity = quantity;
+        this.orderDate = orderDate;
+        this.deliveryDate = deliveryDate;
     }
 
     public float getWaist() {
@@ -58,6 +66,18 @@ public class Pant implements Measurement{
 
     public String getDescription() {
         return description;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
     }
 
     public void setDescription(String description) {

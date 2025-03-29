@@ -1,3 +1,5 @@
+import java.util.Date;
+
 public class KameezShalwaar implements Measurement {
     private float trouserLength;
     private float trouserType;
@@ -5,12 +7,15 @@ public class KameezShalwaar implements Measurement {
 
     private float kameezLength;
     private float sleeves;
-    private byte sleevesType; // 0 for Square, 1 for Round cuff
-    private byte kameezType; // 0 for Square, 1 for Round Daman
+    private byte sleevesType; // 1 for Square, 2 for Round cuff
+    private byte kameezType; // 1 for Square, 2 for Round Daman
     private float shoulder;
     private float neck;
     private byte collarType;
     private String description;
+    private int quantity;
+    private Date orderDate;
+    private Date deliveryDate;
 
     public float getTrouserLength() {
         return trouserLength;
@@ -100,7 +105,19 @@ public class KameezShalwaar implements Measurement {
         this.description = description;
     }
 
-    public KameezShalwaar(float trouserLength, float trouserType, float trouserAnkle, float kameezLength, float sleeves, byte sleevesType, byte kameezType, float shoulder, float neck, byte collarType, String description) {
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public KameezShalwaar(float trouserLength, float trouserType, float trouserAnkle, float kameezLength, float sleeves, byte sleevesType, byte kameezType, float shoulder, float neck, byte collarType, String description, int quantity, Date orderDate, Date deliveryDate) {
         this.trouserLength = trouserLength;
         this.trouserType = trouserType;
         this.trouserAnkle = trouserAnkle;
@@ -112,5 +129,8 @@ public class KameezShalwaar implements Measurement {
         this.neck = neck;
         this.collarType = collarType;
         this.description = description;
+        this.quantity = quantity;
+        this.deliveryDate = deliveryDate;
+        this.orderDate = orderDate;
     }
 }
