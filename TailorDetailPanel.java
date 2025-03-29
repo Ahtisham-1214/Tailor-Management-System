@@ -7,6 +7,7 @@ public class TailorDetailPanel {
     private JLabel addressLabel;
     private JLabel contactLabel;
     private JLabel emailLabel;
+    private JButton backButton;
 
     public TailorDetailPanel() {
         panel = new JPanel();
@@ -41,18 +42,24 @@ public class TailorDetailPanel {
         contactLabel.setBackground(Color.WHITE);
         emailLabel.setBackground(Color.WHITE);
 
+        backButton = new JButton("Back");
 
+        backButton.setBounds(0, 10, 200, 40);
         nameLabel.setBounds(0, 200, 250, 40);
         contactLabel.setBounds(0, 250, 250, 40);
         emailLabel.setBounds(0, 300, 250, 40);
         addressLabel.setBounds(0, 350, 250, 40);
 
-
+        panel.add(backButton);
         panel.add(nameLabel);
         panel.add(contactLabel);
         panel.add(emailLabel);
         panel.add(addressLabel);
 
+    }
+
+    public JButton getBackButton() {
+        return backButton;
     }
 
     public JPanel getPanel() {
