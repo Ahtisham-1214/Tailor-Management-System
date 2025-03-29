@@ -12,6 +12,7 @@ public class PantPanel {
     private JLabel inseamLabel;
     private JLabel descriptionLabel;
     private JLabel pantHeading;
+    private JLabel orderDateLabel;
     private JLabel deliveryDateLabel;
     private JLabel quantityLabel;
 
@@ -25,6 +26,7 @@ public class PantPanel {
     private JTextField inseamTextField;
     private JComboBox<String> typeField;
     private JComboBox<String> statusField;
+    private JTextField orderDateTextField;
     private JTextField deliveryDateTextField;
     private JTextField quantityTextField;
 
@@ -32,7 +34,7 @@ public class PantPanel {
     public PantPanel() {
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBounds(450, 100, 500, 600);
+        panel.setBounds(450, 100, 800, 600);
         panel.setBackground(new Color(169, 169, 169));
 
 
@@ -59,6 +61,7 @@ public class PantPanel {
         typeLabel = new JLabel("Type");
         statusLabel = new JLabel("Status");
         inseamLabel = new JLabel("Inseam");
+        orderDateLabel = new JLabel("Order Date");
         deliveryDateLabel = new JLabel("Delivery Date");
         quantityLabel = new JLabel("Quantity");
         descriptionLabel = new JLabel("Description");
@@ -68,6 +71,7 @@ public class PantPanel {
         waistTextField = new JTextField();
         lengthTextField = new JTextField();
         inseamTextField = new JTextField();
+        orderDateTextField = new JTextField("YYYY-MM-DD");
         deliveryDateTextField = new JTextField("YYYY-MM-DD");
         quantityTextField = new JTextField();
         typeField = new JComboBox<>(new String[]{"Select", "Straight", "Cuff"});
@@ -79,6 +83,9 @@ public class PantPanel {
 
         waistLabel.setBounds(50, 90, 100, 30);
         waistTextField.setBounds(150, 90, 200, 30);
+
+        descriptionLabel.setBounds(400, 90, 100, 30);
+        descriptionTextArea.setBounds(500, 90, 230, 100);
 
         lengthLabel.setBounds(50, 140, 100, 30);
         lengthTextField.setBounds(150, 140, 200, 30);
@@ -93,17 +100,19 @@ public class PantPanel {
         statusField.setBounds(150, 290, 200, 30);
 
 
-        deliveryDateLabel.setBounds(50, 340, 100, 30);
-        deliveryDateTextField.setBounds(150, 340, 200, 30);
+        orderDateLabel.setBounds(50, 340, 100, 30);
+        orderDateTextField.setBounds(150, 340, 200, 30);
 
-        quantityLabel.setBounds(50, 380, 100, 30);
-        quantityTextField.setBounds(150, 380, 200, 30);
+        deliveryDateLabel.setBounds(50, 380, 100, 30);
+        deliveryDateTextField.setBounds(150, 380, 200, 30);
 
-        descriptionLabel.setBounds(50, 420, 100, 30);
-        descriptionTextArea.setBounds(150, 420, 230, 100);
+        quantityLabel.setBounds(50, 420, 100, 30);
+        quantityTextField.setBounds(150, 420, 200, 30);
 
-        clearButton.setBounds(150, 550, 80, 30);
-        saveButton.setBounds(250, 550, 80, 30);
+
+
+        clearButton.setBounds(500, 200, 80, 30);
+        saveButton.setBounds(600, 200, 80, 30);
 
         // Adding widgets to panel
         panel.add(clearButton);
@@ -122,6 +131,8 @@ public class PantPanel {
         panel.add(typeField);
         panel.add(statusLabel);
         panel.add(statusField);
+        panel.add(orderDateLabel);
+        panel.add(orderDateTextField);
         panel.add(deliveryDateLabel);
         panel.add(deliveryDateTextField);
         panel.add(quantityLabel);
@@ -136,6 +147,19 @@ public class PantPanel {
             typeField.setSelectedIndex(0);
             statusField.setSelectedIndex(0);
             descriptionTextArea.setText("");
+        });
+        orderDateTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (orderDateTextField.getText().equals("YYYY-MM-DD"))
+                    orderDateTextField.setText("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (orderDateTextField.getText().isEmpty())
+                    orderDateTextField.setText("YYYY-MM-DD");
+            }
         });
         deliveryDateTextField.addFocusListener(new FocusListener() {
             @Override

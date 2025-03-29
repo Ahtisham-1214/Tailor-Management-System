@@ -13,8 +13,10 @@ public class ShirtPanel {
     private JLabel descriptionLabel;
     private JLabel sleeveLengthLabel;
     private JLabel shirtLengthLabel;
+    private JLabel orderDateLabel;
     private JLabel deliveryDateLabel;
     private JLabel quantityLabel;
+    private JLabel collarTypeLabel;
 
 
     private JTextField chestTextField;
@@ -24,18 +26,20 @@ public class ShirtPanel {
     private JTextField shirtLengthField;
     private JComboBox<String> statusTextField;
     private JComboBox<String> cuffTypeField;
+    private JComboBox<String> collarTypeField;
     private JTextArea descriptionField;
     private JTextField quantityTextField;
     private JLabel shirtHeading;
     private JButton clearButton;
     private JButton saveButton;
     private JTextField deliveryDateTextField;
+    private JTextField orderDateTextField;
 
 
     public ShirtPanel() {
         panel = new JPanel();
         panel.setLayout(null);
-        panel.setBounds(400, 100, 500, 650);
+        panel.setBounds(400, 100, 750, 650);
         panel.setBackground(new Color(169, 169, 169));
 
 
@@ -62,17 +66,21 @@ public class ShirtPanel {
         shirtLengthLabel = new JLabel("Shirt Length");
         cuffTypeLabel = new JLabel("Cuff Type");
         statusLabel = new JLabel("Status");
+        orderDateLabel = new JLabel("Order Date");
         deliveryDateLabel = new JLabel("Delivery Date");
         quantityLabel = new JLabel("Quantity");
         descriptionLabel = new JLabel("Description");
+        collarTypeLabel = new JLabel("Collar Type");
 
         chestTextField = new JTextField();
         neckTextField = new JTextField();
         shoulderTextField = new JTextField();
         sleeveLengthField = new JTextField();
         shirtLengthField = new JTextField();
+        cuffTypeField = new JComboBox<>(new String[]{"Select", "Classic","Standard","Cooper"});
         cuffTypeField = new JComboBox<>(new String[]{"Select", "Half Sleeves", "Square", "Round"});
         statusTextField = new JComboBox<>(new String[]{"Select", "Pending", "Process", "Completed", "Delivered"});
+        orderDateTextField = new JTextField("YYYY-MM-DD");
         deliveryDateTextField = new JTextField("YYYY-MM-DD");
         quantityTextField = new JTextField();
         descriptionField = new JTextArea();
@@ -84,9 +92,10 @@ public class ShirtPanel {
         shirtLengthLabel.setBounds(10, 220, 100, 30);
         cuffTypeLabel.setBounds(10, 260, 100, 30);
         statusLabel.setBounds(10, 300, 100, 30);
-        deliveryDateLabel.setBounds(10, 340, 100, 30);
-        quantityLabel.setBounds(10, 380, 100, 30);
-        descriptionLabel.setBounds(10, 420, 100, 30);
+        orderDateLabel.setBounds(10, 340, 100, 30);
+        deliveryDateLabel.setBounds(10, 380, 100, 30);
+        quantityLabel.setBounds(10, 420, 100, 30);
+        descriptionLabel.setBounds(320, 60, 100, 30);
 
         chestTextField.setBounds(120, 60, 150, 30);
         neckTextField.setBounds(120, 100, 150, 30);
@@ -95,12 +104,13 @@ public class ShirtPanel {
         shirtLengthField.setBounds(120, 220, 150, 30);
         cuffTypeField.setBounds(120, 260, 150, 30);
         statusTextField.setBounds(120, 300, 150, 30);
-        deliveryDateTextField.setBounds(120, 340, 150, 30);
-        quantityTextField.setBounds(120, 380, 150, 30);
-        descriptionField.setBounds(120, 420, 230, 100);
+        orderDateTextField.setBounds(120, 340, 150, 30);
+        deliveryDateTextField.setBounds(120, 380, 150, 30);
+        quantityTextField.setBounds(120, 420, 150, 30);
+        descriptionField.setBounds(420, 60, 230, 100);
 
-        clearButton.setBounds(120, 550, 80, 30);
-        saveButton.setBounds(220, 550, 80, 30);
+        clearButton.setBounds(400, 200, 80, 30);
+        saveButton.setBounds(500, 200, 80, 30);
 
 
         panel.add(saveButton);
@@ -115,6 +125,7 @@ public class ShirtPanel {
         panel.add(sleeveLengthField);
         panel.add(shirtLengthField);
         panel.add(cuffTypeField);
+        panel.add(orderDateLabel);
         panel.add(deliveryDateTextField);
         panel.add(quantityTextField);
         panel.add(descriptionField);
@@ -125,6 +136,7 @@ public class ShirtPanel {
         panel.add(shoulderLabel);
         panel.add(statusLabel);
         panel.add(cuffTypeLabel);
+        panel.add(orderDateTextField);
         panel.add(deliveryDateLabel);
         panel.add(quantityLabel);
         panel.add(descriptionLabel);
@@ -155,6 +167,21 @@ public class ShirtPanel {
                 JOptionPane.showMessageDialog(null, "Enter Sleeve Length", "Sleeve Length Error", JOptionPane.ERROR_MESSAGE);
             else if (shirtLengthField.getText().isBlank())
                 JOptionPane.showMessageDialog(null, "Enter Shirt Length", "Shirt Length Error", JOptionPane.ERROR_MESSAGE);
+        });
+        orderDateTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (orderDateTextField.getText().equals("YYYY-MM-DD")) {
+                    orderDateTextField.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (orderDateTextField.getText().isEmpty()){
+                    orderDateTextField.setText("YYYY-MM-DD");
+                }
+            }
         });
         deliveryDateTextField.addFocusListener(new FocusListener() {
             @Override

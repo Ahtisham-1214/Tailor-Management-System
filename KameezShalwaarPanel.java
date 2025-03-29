@@ -16,6 +16,7 @@ public class KameezShalwaarPanel {
     private JLabel shoulderLabel;
     private JLabel neckLabel;
     private JLabel collarTypeLabel;
+    private JLabel orderDateLabel;
     private JLabel deliveryDateLabel;
     private JLabel descriptionLabel;
     private JLabel quantityLabel;
@@ -33,6 +34,7 @@ public class KameezShalwaarPanel {
     private JComboBox<String> kameezTypeField;
     private JComboBox<String> collarTypeField;
     private JComboBox<String> statusField;
+    private JTextField orderDateTextField;
     private JTextField deliveryDateTextField;
     private JTextArea descriptionField;
     private JTextField quantityTextField;
@@ -71,6 +73,7 @@ public class KameezShalwaarPanel {
         neckLabel = new JLabel("Neck");
         collarTypeLabel = new JLabel("Collar Type");
         statusLabel = new JLabel("Status");
+        orderDateLabel = new JLabel("Order Date");
         deliveryDateLabel = new JLabel("Delivery Date");
         quantityLabel = new JLabel("Quantity");
         descriptionLabel = new JLabel("Description");
@@ -85,6 +88,7 @@ public class KameezShalwaarPanel {
         trouserTypeField = new JComboBox<>(new String[]{"Select", "Shalwaar", "Pajama"});
         collarTypeField = new JComboBox<>(new String[]{"Select", "Cooper", "French", "Sherwani"});
         statusField = new JComboBox<>(new String[]{"Select", "Pending", "Process", "Completed", "Delivered"});
+        orderDateTextField = new JTextField("YYYY-MM-DD");
         deliveryDateTextField = new JTextField("YYYY-MM-DD");
         quantityTextField = new JTextField();
         descriptionField = new JTextArea();
@@ -133,12 +137,14 @@ public class KameezShalwaarPanel {
         statusLabel.setBounds(20, 370, 230, 30);
         statusField.setBounds(130, 370, 200, 30);
 
-        deliveryDateLabel.setBounds(20, 420, 230, 30);
-        deliveryDateTextField.setBounds(130, 420, 200, 30);
+        orderDateLabel.setBounds(20, 420, 230, 30);
+        orderDateTextField.setBounds(130, 420, 200, 30);
 
-        quantityLabel.setBounds(20, 470, 230, 30);
-        quantityTextField.setBounds(130, 470, 200, 30);
+        deliveryDateLabel.setBounds(20, 470, 230, 30);
+        deliveryDateTextField.setBounds(130, 470, 200, 30);
 
+        quantityLabel.setBounds(20, 520, 230, 30);
+        quantityTextField.setBounds(130, 520, 200, 30);
 
 
 
@@ -153,6 +159,7 @@ public class KameezShalwaarPanel {
         panel.add(neckLabel);
         panel.add(collarTypeLabel);
         panel.add(statusLabel);
+        panel.add(orderDateLabel);
         panel.add(deliveryDateLabel);
         panel.add(quantityLabel);
         panel.add(descriptionLabel);
@@ -163,6 +170,7 @@ public class KameezShalwaarPanel {
         panel.add(neckTextField);
         panel.add(collarTypeField);
         panel.add(statusField);
+        panel.add(orderDateTextField);
         panel.add(deliveryDateTextField);
         panel.add(quantityTextField);
         panel.add(descriptionField);
@@ -207,6 +215,19 @@ public class KameezShalwaarPanel {
 
         });
 
+        orderDateTextField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (orderDateTextField.getText().equals("YYYY-MM-DD"))
+                    orderDateTextField.setText("");
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (orderDateTextField.getText().isEmpty())
+                    orderDateTextField.setText("YYYY-MM-DD");
+            }
+        });
         deliveryDateTextField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
