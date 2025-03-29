@@ -43,8 +43,11 @@ public class TailorDetailPanel {
         emailLabel.setBackground(Color.WHITE);
 
         backButton = new JButton("Back");
+        backButton.setBackground(Color.WHITE);
+        backButton.setForeground(Color.DARK_GRAY);
+        backButton.setOpaque(true);
 
-        backButton.setBounds(0, 10, 200, 40);
+        backButton.setBounds(0, 20, 80, 40);
         nameLabel.setBounds(0, 200, 250, 40);
         contactLabel.setBounds(0, 250, 250, 40);
         emailLabel.setBounds(0, 300, 250, 40);
