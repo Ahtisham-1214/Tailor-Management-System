@@ -224,15 +224,26 @@ public class Main {
     private void actionsAndListeners() {
 
         loginPanel.getLoginButton().addActionListener(e -> handleLogin());
-
+        frame.getRootPane().setDefaultButton(loginPanel.getLoginButton());
         tailorDetailPanel.getBackButton().addActionListener(e -> {
             frame.getContentPane().removeAll();
             frame.add(tailorDetailPanel.getPanel());
             loginPanel.getUserNameTextField().setText("");
             loginPanel.getPasswordTextField().setText("");
             frame.add(loginPanel.getPanel());
+            frame.getRootPane().setDefaultButton(loginPanel.getLoginButton());
             frame.revalidate();
             frame.repaint();
+        });
+
+        sideBarPanel.getCustomerLabel().addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                frame.getContentPane().removeAll();
+                frame.add(customerPanel.getPanel());
+                frame.add(sideBarPanel.getPanel());
+                frame.revalidate();
+                frame.repaint();
+            }
         });
         sideBarPanel.getPantLabel().addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
