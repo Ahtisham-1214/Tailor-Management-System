@@ -1,5 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class TailorDetailPanel {
     private JPanel panel;
@@ -16,10 +19,10 @@ public class TailorDetailPanel {
         panel.setBackground(Color.DARK_GRAY);
 
 
-        nameLabel = new JLabel("Tailor Management");
-        addressLabel = new JLabel("A-1116 Qureshi Road Sukkur");
-        contactLabel = new JLabel("03448143397");
-        emailLabel = new JLabel("ahtishamshaikh1214@gmail.com");
+        nameLabel = new JLabel();
+        addressLabel = new JLabel();
+        contactLabel = new JLabel();
+        emailLabel = new JLabel();
 
 
         nameLabel.setFont(new Font("Arial", Font.BOLD, 20));
@@ -58,7 +61,27 @@ public class TailorDetailPanel {
         panel.add(contactLabel);
         panel.add(emailLabel);
         panel.add(addressLabel);
+        fetchDataFromDatabase();
 
+    }
+    private void fetchDataFromDatabase() {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "SELECT shop_name, address, phone_no, email FROM details WHERE id = 1";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                nameLabel.setText(resultSet.getString("shop_name"));
+                addressLabel.setText(resultSet.getString("address"));
+                contactLabel.setText(resultSet.getString("phone_no"));
+                emailLabel.setText(resultSet.getString("email"));
+            } else {
+                JOptionPane.showMessageDialog(null, "No data found in the database!", "Info", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error fetching data from the database.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public JButton getBackButton() {
