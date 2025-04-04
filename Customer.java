@@ -12,6 +12,7 @@ public class Customer {
         pants = new LinkedList<>();
         shirts = new LinkedList<>();
         coats = new LinkedList<>();
+        kameezShalwaars = new LinkedList<>();
     }
 
     public void setName(String name) {
@@ -23,11 +24,12 @@ public class Customer {
     }
 
     public Customer(String name, String phoneNumber) {
+        this();
         this.name = name;
         this.phoneNumber = phoneNumber;
-        pants = new LinkedList<>();
-        shirts = new LinkedList<>();
-        coats = new LinkedList<>();
+//        pants = new LinkedList<>();
+//        shirts = new LinkedList<>();
+//        coats = new LinkedList<>();
     }
 
     public String getName() {
