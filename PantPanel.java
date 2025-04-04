@@ -176,13 +176,66 @@ public class PantPanel {
         });
 
         saveButton.addActionListener(e->{
-            if (getWaistTextField().getText().isBlank())
-                JOptionPane.showMessageDialog(null, "Please Enter Waist");
-            else if (getLengthTextField().getText().isBlank())
-                JOptionPane.showMessageDialog(null, "Please Enter Length");
-            else if (getInseamTextField().getText().isBlank())
-                JOptionPane.showMessageDialog(null, "Please Enter Inseam");
+            try {
+                // Validate input fields
+                if (waistTextField.getText().isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Please Enter Waist");
+                    return;
+                }
+                if (lengthTextField.getText().isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Please Enter Length");
+                    return;
+                }
+                if (inseamTextField.getText().isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Please Enter Inseam");
+                    return;
+                }
+                if (typeField.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(null, "Please Select a Type");
+                    return;
+                }
+                if (statusField.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(null, "Please Select a Status");
+                    return;
+                }
+                if (quantityTextField.getText().isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Please Enter Quantity");
+                    return;
+                }
+                if (orderDateTextField.getText().isBlank() || orderDateTextField.getText().equals("YYYY-MM-DD")) {
+                    JOptionPane.showMessageDialog(null, "Please Enter Order Date");
+                    return;
+                }
+                if (deliveryDateTextField.getText().isBlank() || deliveryDateTextField.getText().equals("YYYY-MM-DD")) {
+                    JOptionPane.showMessageDialog(null, "Please Enter Delivery Date");
+                    return;
+                }
+        
+                // Parse input values
+                float waist = Float.parseFloat(waistTextField.getText());
+                float length = Float.parseFloat(lengthTextField.getText());
+                float inseam = Float.parseFloat(inseamTextField.getText());
+                byte type = (byte) typeField.getSelectedIndex();
+                byte status = (byte) statusField.getSelectedIndex();
+                String description = descriptionTextArea.getText();
+                int quantity = Integer.parseInt(quantityTextField.getText());
+                java.sql.Date orderDate = java.sql.Date.valueOf(orderDateTextField.getText());
+                java.sql.Date deliveryDate = java.sql.Date.valueOf(deliveryDateTextField.getText());
+        
+                // Create a Pant object
+                Pant pant = new Pant(waist, length, type, inseam, status, description, quantity, orderDate, deliveryDate);
+        
+                // Add the Pant object to the Customer's pant LinkedList through Order
+                    Order order = new Order();
+                    order.addPantToCustomer(pant);
+                    JOptionPane.showMessageDialog(null, "Pant details saved successfully!");
+                    order.showCustomer();
 
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Please enter valid numeric values for Waist, Length, Inseam, and Quantity.", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(null, "Please enter valid dates in the format YYYY-MM-DD.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         });
     }
 

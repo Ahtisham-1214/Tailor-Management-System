@@ -28,6 +28,7 @@ public class Customer {
         pants = new LinkedList<>();
         shirts = new LinkedList<>();
         coats = new LinkedList<>();
+        kameezShalwaars = new LinkedList<>();
     }
 
     public String getName() {
@@ -36,6 +37,13 @@ public class Customer {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public void addPant(Pant pant) {
+        pants.add(pant);
+    }
+    public void addShirt(Shirt shirt) {
+        shirts.add(shirt);
     }
 
     public LinkedList<Pant> getPants() {

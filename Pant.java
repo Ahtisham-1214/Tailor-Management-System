@@ -61,6 +61,9 @@ public class Pant implements Measurement{
     }
 
     public void setStatus(byte status) {
+        if (status < 1 || status > 4) {
+            throw new IllegalArgumentException("Status must be between 1 and 4.");
+        }
         this.status = status;
     }
 
@@ -82,5 +85,18 @@ public class Pant implements Measurement{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void getPantDetail(){
+        System.out.println("Pant Details: ");
+        System.out.println("Waist: " + getWaist());
+        System.out.println("Length: " + getLength());
+        System.out.println("Type: " + (getType() == 1 ? "Straight fit" : "Cuff"));
+        System.out.println("Inseam: " + getInseam());
+        System.out.println("Status: " + (getStatus() == 1 ? "Pending" : status == 2 ? "Processing" : status == 3 ? "Completed" : "Delivered"));
+        System.out.println("Description: " + getDescription());
+        System.out.println("Quantity: " + getQuantity());
+        System.out.println("Order Date: " + getOrderDate());
+        System.out.println("Delivery Date: " + getDeliveryDate());
     }
 }

@@ -31,10 +31,8 @@ public class Main {
     private JPanel analysisPanel;
     private JLabel analysisLabel;
     private JLabel analysisIcon;
-    private static LinkedList<Customer> orders;
 
     public Main() {
-        orders = new LinkedList<>();
         // Frame
         frame = new JFrame("Tailor Management System");
         frame.setLayout(null);
@@ -158,9 +156,6 @@ public class Main {
         actionsAndListeners();
     }
 
-    public static LinkedList<Customer> getOrders() {
-        return orders;
-    }
 
     public static void main(String[] args) {
 
