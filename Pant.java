@@ -23,6 +23,29 @@ public class Pant implements Measurement{
         this.orderDate = orderDate;
         this.deliveryDate = deliveryDate;
     }
+    @Override
+public String toString() {
+    return "Pant Details: " +
+            "\nWaist: " + waist +
+            "\nLength: " + length +
+            "\nType: " + (type == 1 ? "Straight Fit" : "Cuff") +
+            "\nInseam: " + inseam +
+            "\nStatus: " + getStatusString() +
+            "\nDescription: " + description +
+            "\nQuantity: " + quantity +
+            "\nOrder Date: " + orderDate +
+            "\nDelivery Date: " + deliveryDate;
+}
+
+private String getStatusString() {
+    switch (status) {
+        case 1: return "Pending";
+        case 2: return "Processing";
+        case 3: return "Completed";
+        case 4: return "Delivered";
+        default: return "Unknown";
+    }
+}
 
     public float getWaist() {
         return waist;

@@ -8,6 +8,11 @@ public class Customer {
     private LinkedList<Coat> coats;
     private LinkedList<KameezShalwaar> kameezShalwaars;
 
+    @Override
+    public String toString() {
+        return getName() + "\t" + getPhoneNumber();
+    }
+
     public Customer() {
         pants = new LinkedList<>();
         shirts = new LinkedList<>();

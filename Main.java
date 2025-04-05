@@ -154,7 +154,8 @@ public class Main {
         timer.setRepeats(false); // Ensure the timer runs only once
         timer.start();
 
-
+        loginPanel.getLoginButton().addActionListener(e -> handleLogin());
+        frame.getRootPane().setDefaultButton(loginPanel.getLoginButton());
         actionsAndListeners();
     }
 
@@ -224,8 +225,7 @@ public class Main {
 
     private void actionsAndListeners() {
 
-        loginPanel.getLoginButton().addActionListener(e -> handleLogin());
-        frame.getRootPane().setDefaultButton(loginPanel.getLoginButton());
+
         tailorDetailPanel.getBackButton().addActionListener(e -> {
             frame.getContentPane().removeAll();
             frame.add(tailorDetailPanel.getPanel());

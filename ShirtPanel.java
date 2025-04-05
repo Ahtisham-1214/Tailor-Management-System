@@ -77,7 +77,7 @@ public class ShirtPanel {
         shoulderTextField = new JTextField();
         sleeveLengthField = new JTextField();
         shirtLengthField = new JTextField();
-        cuffTypeField = new JComboBox<>(new String[]{"Select", "Classic","Standard","Cooper"});
+        collarTypeField = new JComboBox<>(new String[]{"Select", "Classic","Standard","Cooper"});
         cuffTypeField = new JComboBox<>(new String[]{"Select", "Half Sleeves", "Square", "Round"});
         statusTextField = new JComboBox<>(new String[]{"Select", "Pending", "Process", "Completed", "Delivered"});
         orderDateTextField = new JTextField("YYYY-MM-DD");
@@ -95,6 +95,7 @@ public class ShirtPanel {
         orderDateLabel.setBounds(10, 340, 100, 30);
         deliveryDateLabel.setBounds(10, 380, 100, 30);
         quantityLabel.setBounds(10, 420, 100, 30);
+        collarTypeLabel.setBounds(10, 460, 100, 30);
         descriptionLabel.setBounds(320, 60, 100, 30);
 
         chestTextField.setBounds(120, 60, 150, 30);
@@ -107,6 +108,7 @@ public class ShirtPanel {
         orderDateTextField.setBounds(120, 340, 150, 30);
         deliveryDateTextField.setBounds(120, 380, 150, 30);
         quantityTextField.setBounds(120, 420, 150, 30);
+        collarTypeField.setBounds(120, 460, 150, 30);
         descriptionField.setBounds(420, 60, 230, 100);
 
         clearButton.setBounds(400, 200, 80, 30);
@@ -128,6 +130,7 @@ public class ShirtPanel {
         panel.add(orderDateLabel);
         panel.add(deliveryDateTextField);
         panel.add(quantityTextField);
+        panel.add(collarTypeField);
         panel.add(descriptionField);
 
 
@@ -135,6 +138,7 @@ public class ShirtPanel {
         panel.add(neckLabel);
         panel.add(shoulderLabel);
         panel.add(statusLabel);
+        panel.add(collarTypeLabel);
         panel.add(cuffTypeLabel);
         panel.add(orderDateTextField);
         panel.add(deliveryDateLabel);
@@ -167,6 +171,32 @@ public class ShirtPanel {
                 JOptionPane.showMessageDialog(null, "Enter Sleeve Length", "Sleeve Length Error", JOptionPane.ERROR_MESSAGE);
             else if (shirtLengthField.getText().isBlank())
                 JOptionPane.showMessageDialog(null, "Enter Shirt Length", "Shirt Length Error", JOptionPane.ERROR_MESSAGE);
+            else {
+                float chest = Float.parseFloat(chestTextField.getText());
+                float neck = Float.parseFloat(neckTextField.getText());
+                float shoulder = Float.parseFloat(shoulderTextField.getText());
+                float sleeveLength = Float.parseFloat(sleeveLengthField.getText());
+                float shirtLength = Float.parseFloat(shirtLengthField.getText());
+                byte cuffType = (byte) cuffTypeField.getSelectedIndex();
+                byte status = (byte) statusTextField.getSelectedIndex();
+                byte collarType = (byte) collarTypeField.getSelectedIndex();
+                java.sql.Date orderDate = java.sql.Date.valueOf(orderDateTextField.getText());
+                java.sql.Date deliveryDate = java.sql.Date.valueOf(deliveryDateTextField.getText());
+                int quantity = Integer.parseInt(quantityTextField.getText());
+                String description = descriptionField.getText();
+                
+                Shirt shirt = new Shirt(chest, sleeveLength, shirtLength, shoulder, neck, collarType, cuffType, status, description, quantity, orderDate, deliveryDate);
+                Main.getOrders().getFirst().getShirts().add(shirt);
+                JOptionPane.showMessageDialog(null, "Shirt Added successfully");
+                if (!Main.getOrders().getFirst().getShirts().isEmpty()){
+                    for (int i = 0; i < Main.getOrders().getFirst().getShirts().size(); i++){
+                        System.out.println(Main.getOrders().getFirst().toString());
+                        System.out.println(Main.getOrders().getFirst().getShirts().get(i).toString());
+                    }
+                }else {
+                    System.out.println("No shirt found");
+                }
+            }
         });
         orderDateTextField.addFocusListener(new FocusListener() {
             @Override

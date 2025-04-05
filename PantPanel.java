@@ -110,7 +110,6 @@ public class PantPanel {
         quantityTextField.setBounds(150, 420, 200, 30);
 
 
-
         clearButton.setBounds(500, 200, 80, 30);
         saveButton.setBounds(600, 200, 80, 30);
 
@@ -175,14 +174,46 @@ public class PantPanel {
             }
         });
 
-        saveButton.addActionListener(e->{
-            if (getWaistTextField().getText().isBlank())
+        saveButton.addActionListener(e -> {
+            if (waistTextField.getText().isBlank())
                 JOptionPane.showMessageDialog(null, "Please Enter Waist");
-            else if (getLengthTextField().getText().isBlank())
+            else if (lengthTextField.getText().isBlank())
                 JOptionPane.showMessageDialog(null, "Please Enter Length");
-            else if (getInseamTextField().getText().isBlank())
+            else if (inseamTextField.getText().isBlank())
                 JOptionPane.showMessageDialog(null, "Please Enter Inseam");
+//            else if (orderDateTextField.getText().isBlank())
+//                orderDateTextField.setText(java.time.LocalDate.now().toString());
+//            else if (deliveryDateTextField.getText().isBlank())
+//                deliveryDateTextField.setText(java.time.LocalDate.now().plusDays(7).toString());
+//            else if (statusField.getSelectedIndex() == 0)
+//                statusField.setSelectedIndex(1);
+//            else if (quantityTextField.getText().isBlank())
+//                quantityTextField.setText("1");
+            else {
+                // Parse input values
+                float waist = Float.parseFloat(waistTextField.getText());
+                float length = Float.parseFloat(lengthTextField.getText());
+                float inseam = Float.parseFloat(inseamTextField.getText());
+                byte type = (byte) typeField.getSelectedIndex();
+                byte status = (byte) statusField.getSelectedIndex();
+                String description = descriptionTextArea.getText();
+                int quantity = Integer.parseInt(quantityTextField.getText());
+                java.sql.Date orderDate = java.sql.Date.valueOf(orderDateTextField.getText());
+                java.sql.Date deliveryDate = java.sql.Date.valueOf(deliveryDateTextField.getText());
 
+                // Create a Pant object
+                Pant pant = new Pant(waist, length, type, inseam, status, description, quantity, orderDate, deliveryDate);
+                Main.getOrders().getFirst().getPants().add(pant);
+                JOptionPane.showMessageDialog(null, "Pant added successfully");
+//                if (!Main.getOrders().getFirst().getPants().isEmpty()){
+//                    for (int i = 0; i < Main.getOrders().getFirst().getPants().size(); i++){
+//                        System.out.println(Main.getOrders().getFirst().toString());
+//                        System.out.println(Main.getOrders().getFirst().getPants().get(i).toString());
+//                    }
+//                }else {
+//                    System.out.println("No pant found");
+//                }
+            }
         });
     }
 

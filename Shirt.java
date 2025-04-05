@@ -6,9 +6,9 @@ public class Shirt implements Measurement {
     private float shirtLength;
     private float shoulder;
     private float neck;
-    private byte collarType;
-    private byte cuffType;  // 0 for half sleeves, 1 for Square cuff, 2 for round cuff
-    private byte status; // 0 for pending, 1 for processing, 2 for completed, 3 for delivered
+    private byte collarType; // 1 for classic, 2 for standard, 3 for cooper
+    private byte cuffType;  // 1 for half sleeves, 2 for Square cuff, 3 for round cuff
+    private byte status; // 1 for pending, 2 for processing, 3 for completed, 4 for delivered
     private String description;
     private int quantity;
     private Date orderDate;
@@ -103,8 +103,7 @@ public class Shirt implements Measurement {
         this.deliveryDate = deliveryDate;
     }
 
-    public Shirt(float chest, float sleeveLength, float shirtLength, float shoulder, float neck, byte collarType, byte cuffType,  byte status, String description, int quantity, Date orderDate, Date deliveryDate)
-    {
+    public Shirt(float chest, float sleeveLength, float shirtLength, float shoulder, float neck, byte collarType, byte cuffType, byte status, String description, int quantity, Date orderDate, Date deliveryDate) {
         this.chest = chest;
         this.sleeveLength = sleeveLength;
         this.shirtLength = shirtLength;
@@ -117,5 +116,64 @@ public class Shirt implements Measurement {
         this.quantity = quantity;
         this.orderDate = orderDate;
         this.deliveryDate = deliveryDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Shirt{" +
+                "chest=" + chest +
+                ", sleeveLength=" + sleeveLength + "\n" +
+                ", shirtLength=" + shirtLength +
+                ", shoulder=" + shoulder +
+                ", neck=" + neck + "\n" +
+                ", collarType=" + convertCollarType(collarType) +
+                ", cuffType=" + convertCuffType(cuffType) +
+                ", status=" + convertStatus(status) + "\n" +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity + "\n" +
+                ", orderDate=" + orderDate +
+                ", deliveryDate=" + deliveryDate +
+                '}';
+    }
+
+    private String convertCollarType(byte collarType) {
+        switch (collarType) {
+            case 2:
+                return "Standard";
+            case 1:
+                return "Classic";
+            case 3:
+                return "Cooper";
+            default:
+                return "Unknown";
+        }
+    }
+
+    private String convertCuffType(byte cuffType) {
+        switch (cuffType) {
+            case 1:
+                return "Half Sleeves";
+            case 2:
+                return "Square Cuff";
+            case 3:
+                return "Round Cuff";
+            default:
+                return "Unknown";
+        }
+    }
+
+    private String convertStatus(byte status) {
+        switch (status) {
+            case 1:
+                return "Pending";
+            case 2:
+                return "Processing";
+            case 3:
+                return "Completed";
+            case 4:
+                return "Delivered";
+            default:
+                return "Unknown";
+        }
     }
 }
