@@ -85,31 +85,34 @@ public class SideBarPanel {
         panel.add(generateReceiptButton);
 
         generateReceiptButton.addActionListener(e -> {
-            int pantQuantity = pantQuantity();
-            int coatQuantity = coatQuantity();
-            int kameezShalwaarQuantity = kameezShalwaarQuantity();
-            int shirtQuantity = shirtQuantity();
 
-
-
+            System.out.println("Customer Name: " + Main.getOrders().getFirst().getName());
             System.out.println("---------------------------------------------------");
-            System.out.println("Name \t\t Qty \t\t Price \t\t Total");
+            System.out.println("Item\t\tQty\t\tPrice\t\tTotal");
             System.out.println("---------------------------------------------------");
 
-            System.out.println(Main.getOrders().getFirst().getName());
+            float pantTotal = pantPrice() * pantQuantity();
+            float shirtTotal = shirtPrice() * shirtQuantity();
+            float coatTotal = coatPrice() * coatQuantity();
+            float kameezShalwaarTotal = kameezShalwarPrice() * kameezShalwaarQuantity();
 
-            if (pantQuantity != 0)
-                System.out.println("Pant" + "\t\t" + pantQuantity);
-            if (shirtQuantity != 0)
-                System.out.println("Shirt" + "\t\t" + shirtQuantity);
-            if (coatQuantity != 0)
-                System.out.println("Coat" + "\t\t" + coatQuantity);
-            if (kameezShalwaarQuantity != 0)
-                System.out.println("Kameez Shalwaar" + "\t\t" + kameezShalwaarQuantity);
+            if (pantQuantity() != 0) {
+                System.out.printf("Pant\t\t%d\t\t%.2f\t\t%.2f%n", pantQuantity(), pantPrice(), pantTotal);
+            }
+            if (shirtQuantity() != 0) {
+                System.out.printf("Shirt\t\t%d\t\t%.2f\t\t%.2f%n", shirtQuantity(), shirtPrice(), shirtTotal);
+            }
+            if (coatQuantity() != 0) {
+                System.out.printf("Coat\t\t%d\t\t%.2f\t\t%.2f%n", coatQuantity(), coatPrice(), coatTotal);
+            }
+            if (kameezShalwaarQuantity() != 0) {
+                System.out.printf("Kameez Shalwaar\t%d\t\t%.2f\t\t%.2f%n", kameezShalwaarQuantity(), kameezShalwarPrice(), kameezShalwaarTotal);
+            }
 
+            System.out.println("---------------------------------------------------");
+            System.out.printf("\t\t\t\t\t\t\t\t%.2f%n", pantTotal + shirtTotal + coatTotal + kameezShalwaarTotal);
 
-
-            System.out.println("\n\n---------------------------------------------------");
+            System.out.println("\n\n*************************************************");
             fetchTailorShopDetails();
         });
 
@@ -118,25 +121,25 @@ public class SideBarPanel {
             if (!Main.getOrders().isEmpty()) {
                 for (Customer customer : Main.getOrders()) {
                     databaseHandler.insertCustomer(customer);
-                    if (!customer.getPants().isEmpty()){
+                    if (!customer.getPants().isEmpty()) {
                         for (int i = 0; i < customer.getPants().size(); i++)
                             databaseHandler.insertPant(customer.getPants().get(i), customer.getPhoneNumber());
 
                     }
 
-                    if (!customer.getShirts().isEmpty()){
+                    if (!customer.getShirts().isEmpty()) {
                         for (int i = 0; i < customer.getShirts().size(); i++)
                             databaseHandler.insertShirt(customer.getShirts().get(i), customer.getPhoneNumber());
 
                     }
 
-                    if (!customer.getCoats().isEmpty()){
+                    if (!customer.getCoats().isEmpty()) {
                         for (int i = 0; i < customer.getCoats().size(); i++)
                             databaseHandler.insertCoat(customer.getCoats().get(i), customer.getPhoneNumber());
 
                     }
 
-                    if (!customer.getKameezShalwaars().isEmpty()){
+                    if (!customer.getKameezShalwaars().isEmpty()) {
                         for (int i = 0; i < customer.getKameezShalwaars().size(); i++)
                             databaseHandler.insertKameezShalwaar(customer.getKameezShalwaars().get(i), customer.getPhoneNumber());
 
@@ -148,41 +151,107 @@ public class SideBarPanel {
 
     }
 
-    private int pantQuantity(){
+    private float pantPrice() {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "Select pant_price from price where id = 1";
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getFloat("pant_price");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage() + "Failed to get Pant price");
+        }
+        return 0;
+    }
+
+    private float coatPrice() {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "Select coat_price from price where id = 1";
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getFloat("coat_price");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage() + "Failed to get Coat price");
+        }
+        return 0;
+    }
+
+    private float shirtPrice() {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "Select shirt_price from price where id = 1";
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getFloat("shirt_price");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage() + "Failed to get Shirt price");
+        }
+        return 0;
+    }
+
+    private float kameezShalwarPrice() {
+        try (Connection connection = DatabaseConnection.getConnection()) {
+            String query = "Select kameez_shalwaar_price from price where id = 1";
+            assert connection != null;
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getFloat("kameez_shalwaar_price");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage() + "Failed to get Kameez Shalwaar price");
+        }
+        return 0;
+    }
+
+
+    private int pantQuantity() {
         int quantity = 0;
-        if (!Main.getOrders().getFirst().getPants().isEmpty()){
+        if (!Main.getOrders().getFirst().getPants().isEmpty()) {
             for (int i = 0; i < Main.getOrders().getFirst().getPants().size(); i++)
                 quantity = Main.getOrders().getFirst().getPants().get(i).getQuantity();
         }
         return quantity;
     }
 
-    private int shirtQuantity(){
+    private int shirtQuantity() {
         int quantity = 0;
-        if (!Main.getOrders().getFirst().getShirts().isEmpty()){
+        if (!Main.getOrders().getFirst().getShirts().isEmpty()) {
             for (int i = 0; i < Main.getOrders().getFirst().getShirts().size(); i++)
                 quantity = Main.getOrders().getFirst().getShirts().get(i).getQuantity();
         }
         return quantity;
     }
 
-    private int coatQuantity(){
+    private int coatQuantity() {
         int quantity = 0;
-        if (!Main.getOrders().getFirst().getCoats().isEmpty()){
+        if (!Main.getOrders().getFirst().getCoats().isEmpty()) {
             for (int i = 0; i < Main.getOrders().getFirst().getCoats().size(); i++)
                 quantity = Main.getOrders().getFirst().getCoats().get(i).getQuantity();
         }
         return quantity;
     }
 
-    private int kameezShalwaarQuantity(){
+    private int kameezShalwaarQuantity() {
         int quantity = 0;
-        if (!Main.getOrders().getFirst().getKameezShalwaars().isEmpty()){
+        if (!Main.getOrders().getFirst().getKameezShalwaars().isEmpty()) {
             for (int i = 0; i < Main.getOrders().getFirst().getKameezShalwaars().size(); i++)
                 quantity = Main.getOrders().getFirst().getKameezShalwaars().get(i).getQuantity();
         }
         return quantity;
     }
+
     private void fetchTailorShopDetails() {
         try (Connection connection = DatabaseConnection.getConnection()) {
             String query = "SELECT shop_name, address, phone_no, email FROM details WHERE id = 1";
@@ -214,6 +283,7 @@ public class SideBarPanel {
     public JLabel getCustomerLabel() {
         return customerLabel;
     }
+
     public JLabel getShirtLabel() {
         return shirtLabel;
     }
