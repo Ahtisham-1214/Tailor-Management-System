@@ -154,6 +154,35 @@ public class CoatPanel {
                 JOptionPane.showMessageDialog(null, "Enter Sleeve Field", "Sleeve Error", JOptionPane.ERROR_MESSAGE);
             else if (shoulderTextField.getText().isBlank())
                 JOptionPane.showMessageDialog(null, "Enter Shoulder Field", "Shoulder Error", JOptionPane.ERROR_MESSAGE);
+            else {
+                try {
+                    float chest = Float.parseFloat(chestTextField.getText());
+                    float waist = Float.parseFloat(waistTextField.getText());
+                    float sleeves = Float.parseFloat(sleevesTextField.getText());
+                    float shoulder = Float.parseFloat(shoulderTextField.getText());
+                    byte status = (byte) statusField.getSelectedIndex();
+                    String description = descriptionField.getText();
+                    int quantity = Integer.parseInt(quantityTextField.getText());
+                    java.sql.Date orderDate = java.sql.Date.valueOf(orderDateTextField.getText());
+                    java.sql.Date deliveryDate = java.sql.Date.valueOf(deliveryDateTextField.getText());
+
+                    Coat coat = new Coat(chest, waist, sleeves, shoulder, status, description, quantity, orderDate, deliveryDate);
+                    Main.getOrders().getFirst().getCoats().add(coat);
+                    JOptionPane.showMessageDialog(null, "Coat details saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+//                    if (!Main.getOrders().getFirst().getCoats().isEmpty()){
+//                        for (int i = 0; i < Main.getOrders().getFirst().getCoats().size(); i++){
+//                            System.out.println(Main.getOrders().getFirst().toString());
+//                            System.out.println(Main.getOrders().getFirst().getCoats().get(i).toString());
+//                        }
+//                    }else {
+//                        System.out.println("No Coat found");
+//                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Invalid number format in one of the fields.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                } catch (IllegalArgumentException ex) {
+                    JOptionPane.showMessageDialog(null, "Invalid date format. Use YYYY-MM-DD.", "Date Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         });
         orderDateTextField.addFocusListener(new FocusListener() {
             @Override

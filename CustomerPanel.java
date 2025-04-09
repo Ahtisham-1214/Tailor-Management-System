@@ -69,6 +69,7 @@ public class CustomerPanel {
             } else if (getPhoneTextField().getText().length() != 11) {
                 JOptionPane.showMessageDialog(null, "Enter 11 Digit Phone Number");
             } else {
+                Main.getOrders().clear();
                 Main.getOrders().add(new Customer(getNameTextField().getText(), getPhoneTextField().getText()));
                 JOptionPane.showMessageDialog(null, "Customer added successfully");
 //                System.out.println(Main.getOrders().getFirst().getName() + "\t" + Main.getOrders().getFirst().getPhoneNumber());

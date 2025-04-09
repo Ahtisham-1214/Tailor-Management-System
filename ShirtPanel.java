@@ -188,14 +188,14 @@ public class ShirtPanel {
                 Shirt shirt = new Shirt(chest, sleeveLength, shirtLength, shoulder, neck, collarType, cuffType, status, description, quantity, orderDate, deliveryDate);
                 Main.getOrders().getFirst().getShirts().add(shirt);
                 JOptionPane.showMessageDialog(null, "Shirt Added successfully");
-                if (!Main.getOrders().getFirst().getShirts().isEmpty()){
-                    for (int i = 0; i < Main.getOrders().getFirst().getShirts().size(); i++){
-                        System.out.println(Main.getOrders().getFirst().toString());
-                        System.out.println(Main.getOrders().getFirst().getShirts().get(i).toString());
-                    }
-                }else {
-                    System.out.println("No shirt found");
-                }
+//                if (!Main.getOrders().getFirst().getShirts().isEmpty()){
+//                    for (int i = 0; i < Main.getOrders().getFirst().getShirts().size(); i++){
+//                        System.out.println(Main.getOrders().getFirst().toString());
+//                        System.out.println(Main.getOrders().getFirst().getShirts().get(i).toString());
+//                    }
+//                }else {
+//                    System.out.println("No shirt found");
+//                }
             }
         });
         orderDateTextField.addFocusListener(new FocusListener() {

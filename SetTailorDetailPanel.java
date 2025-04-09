@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 public class SetTailorDetailPanel {
-    private JPanel setDetailpanel;
+    private JPanel panel;
     private JLabel nameLabel;
     private JTextField nameField;
     private JLabel addressLabel;
@@ -16,10 +16,10 @@ public class SetTailorDetailPanel {
     private JButton setButton;
 
     public SetTailorDetailPanel() {
-        setDetailpanel = new JPanel();
-        setDetailpanel.setLayout(null);
-        setDetailpanel.setBounds(450, 20, 600, 600);
-        setDetailpanel.setBackground(Color.DARK_GRAY);
+        panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBounds(450, 20, 600, 600);
+        panel.setBackground(Color.DARK_GRAY);
 
         nameLabel = new JLabel("Name");
         nameField = new JTextField();
@@ -49,15 +49,15 @@ public class SetTailorDetailPanel {
         setButton.setBounds(100, 160, 90, 30);
 
 
-        setDetailpanel.add(nameLabel);
-        setDetailpanel.add(nameField);
-        setDetailpanel.add(addressLabel);
-        setDetailpanel.add(addressField);
-        setDetailpanel.add(phoneLabel);
-        setDetailpanel.add(phoneField);
-        setDetailpanel.add(emailLabel);
-        setDetailpanel.add(emailField);
-        setDetailpanel.add(setButton);
+        panel.add(nameLabel);
+        panel.add(nameField);
+        panel.add(addressLabel);
+        panel.add(addressField);
+        panel.add(phoneLabel);
+        panel.add(phoneField);
+        panel.add(emailLabel);
+        panel.add(emailField);
+        panel.add(setButton);
 
         setButton.addActionListener(e -> {
             String shopName = nameField.getText();
@@ -92,7 +92,7 @@ public class SetTailorDetailPanel {
     }
 
 
-    public JPanel getSetDetailpanel() {
-        return setDetailpanel;
+    public JPanel getPanel() {
+        return panel;
     }
 }

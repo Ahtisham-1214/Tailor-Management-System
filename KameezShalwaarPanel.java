@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.sql.Date;
 
 public class KameezShalwaarPanel {
     private JPanel panel;
@@ -32,7 +33,7 @@ public class KameezShalwaarPanel {
     private JTextField neckTextField;
     private JComboBox<String> cuffTypeField;
     private JComboBox<String> kameezTypeField;
-    private JComboBox<String> collarTypeField;
+    private JComboBox<String> collarTypeField; //1 for Cooper, 2 for french 3 for sherwani
     private JComboBox<String> statusField;
     private JTextField orderDateTextField;
     private JTextField deliveryDateTextField;
@@ -147,7 +148,6 @@ public class KameezShalwaarPanel {
         quantityTextField.setBounds(130, 520, 200, 30);
 
 
-
         panel.add(saveButton);
         panel.add(clearButton);
         panel.add(kameezShalwaarHeading);
@@ -212,6 +212,42 @@ public class KameezShalwaarPanel {
                 JOptionPane.showMessageDialog(null, "Enter Trouser Width", "Trouser Width Error", JOptionPane.ERROR_MESSAGE);
             else if (trouserTypeField.getSelectedIndex() == 0)
                 JOptionPane.showMessageDialog(null, "Select Trouser Type", "Trouser Type Error", JOptionPane.ERROR_MESSAGE);
+            else {
+                try {
+                    float kameezLength = Float.parseFloat(kameezLengthTextField.getText());
+                    float sleeves = Float.parseFloat(sleevesTextField.getText());
+                    float shoulder = Float.parseFloat(shoulderTextField.getText());
+                    float neck = Float.parseFloat(neckTextField.getText());
+                    float trouserLength = Float.parseFloat(trouserLengthTextField.getText());
+                    float trouserWidth = Float.parseFloat(trouserWidthTextField.getText());
+                    byte trouserType = (byte) trouserTypeField.getSelectedIndex();
+                    byte collarType = (byte) collarTypeField.getSelectedIndex();
+                    byte cuffType = (byte) cuffTypeField.getSelectedIndex();
+                    byte kameezType = (byte) kameezTypeField.getSelectedIndex();
+                    byte status = (byte) statusField.getSelectedIndex();
+                    java.sql.Date orderDate = java.sql.Date.valueOf(orderDateTextField.getText());
+                    java.sql.Date deliveryDate = java.sql.Date.valueOf(deliveryDateTextField.getText());
+                    int quantity = Integer.parseInt(quantityTextField.getText());
+                    String description = descriptionField.getText();
+
+                    KameezShalwaar kameezShalwaar = new KameezShalwaar(trouserLength, trouserType, trouserWidth, kameezLength, sleeves, cuffType, kameezType, shoulder, neck, collarType, status, description, quantity, orderDate, deliveryDate);
+                    Main.getOrders().getFirst().getKameezShalwaars().add(kameezShalwaar);
+
+                    JOptionPane.showMessageDialog(null, "Kameez Shalwaar saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+//                    if (!Main.getOrders().getFirst().getKameezShalwaars().isEmpty()){
+//                        for (int i = 0; i < Main.getOrders().getFirst().getKameezShalwaars().size(); i++){
+//                            System.out.println(Main.getOrders().getFirst().toString());
+//                            System.out.println(Main.getOrders().getFirst().getKameezShalwaars().get(i).toString());
+//                        }
+//                    }else {
+//                        System.out.println("No pant found");
+//                    }
+
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Please enter valid numeric values where required.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
 
         });
 

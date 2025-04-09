@@ -25,6 +25,29 @@ public class Coat implements Measurement {
         this.deliveryDate = deliveryDate;
     }
 
+    @Override
+    public String toString() {
+        String statusString;
+        switch (status) {
+            case 1 -> statusString = "Pending";
+            case 2 -> statusString = "Processing";
+            case 3 -> statusString = "Completed";
+            case 4 -> statusString = "Delivered";
+            default -> statusString = "Unknown";
+        }
+        return "Coat{" +
+                "chest=" + chest +
+                ", waist=" + waist +
+                ", sleeves=" + sleeves +
+                ", shoulder=" + shoulder +
+                ", status=" + statusString +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity +
+                ", orderDate=" + orderDate +
+                ", deliveryDate=" + deliveryDate +
+                '}';
+    }
+
     public float getChest() {
         return chest;
     }

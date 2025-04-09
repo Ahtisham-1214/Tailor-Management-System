@@ -2,20 +2,41 @@ import java.util.Date;
 
 public class KameezShalwaar implements Measurement {
     private float trouserLength;
-    private float trouserType;
+    private byte trouserType; // 1 for Shalwaar 2 for pajama
     private float trouserAnkle;
 
     private float kameezLength;
     private float sleeves;
-    private byte sleevesType; // 1 for Square, 2 for Round cuff
+    private byte cuffType; // 1 for Square, 2 for Round cuff
     private byte kameezType; // 1 for Square, 2 for Round Daman
     private float shoulder;
     private float neck;
-    private byte collarType;
+    private byte collarType; // 1 for Cooper, 2 for french 3 for sherwani
     private String description;
     private int quantity;
     private Date orderDate;
     private Date deliveryDate;
+    private byte status; // 1 for pending, 2 for progress, 3 for completed, 4 for delivered
+
+    public byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(byte status) {
+        this.status = status;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public float getTrouserLength() {
         return trouserLength;
@@ -25,11 +46,11 @@ public class KameezShalwaar implements Measurement {
         this.trouserLength = trouserLength;
     }
 
-    public float getTrouserType() {
+    public byte getTrouserType() {
         return trouserType;
     }
 
-    public void setTrouserType(float trouserType) {
+    public void setTrouserType(byte trouserType) {
         this.trouserType = trouserType;
     }
 
@@ -57,12 +78,12 @@ public class KameezShalwaar implements Measurement {
         this.sleeves = sleeves;
     }
 
-    public byte getSleevesType() {
-        return sleevesType;
+    public byte getCuffType() {
+        return cuffType;
     }
 
-    public void setSleevesType(byte sleevesType) {
-        this.sleevesType = sleevesType;
+    public void setCuffType(byte cuffType) {
+        this.cuffType = cuffType;
     }
 
     public byte getKameezType() {
@@ -117,20 +138,47 @@ public class KameezShalwaar implements Measurement {
         return deliveryDate;
     }
 
-    public KameezShalwaar(float trouserLength, float trouserType, float trouserAnkle, float kameezLength, float sleeves, byte sleevesType, byte kameezType, float shoulder, float neck, byte collarType, String description, int quantity, Date orderDate, Date deliveryDate) {
+
+    public KameezShalwaar(float trouserLength, byte trouserType,
+                          float trouserAnkle, float kameezLength,
+                          float sleeves, byte cuffType, byte kameezType,
+                          float shoulder, float neck, byte collarType,
+                          byte status, String description, int quantity,
+                          Date orderDate, Date deliveryDate) {
         this.trouserLength = trouserLength;
         this.trouserType = trouserType;
         this.trouserAnkle = trouserAnkle;
         this.kameezLength = kameezLength;
         this.sleeves = sleeves;
-        this.sleevesType = sleevesType;
+        this.cuffType = cuffType;
         this.kameezType = kameezType;
         this.shoulder = shoulder;
         this.neck = neck;
         this.collarType = collarType;
+        this.status = status;
         this.description = description;
         this.quantity = quantity;
         this.deliveryDate = deliveryDate;
         this.orderDate = orderDate;
+    }
+
+    @Override
+    public String toString() {
+        return "KameezShalwaar{" +
+            "trouserLength=" + trouserLength +
+            " trouserType=" + (trouserType == 1 ? "Shalwaar" : "Pajama") +
+            " trouserAnkle=" + trouserAnkle + "\n" +
+            " kameezLength=" + kameezLength +
+            " sleeves=" + sleeves + "\n" +
+            " cuffType=" + (cuffType == 1 ? "Square" : "Round cuff") +
+            " kameezType=" + (kameezType == 1 ? "Square Daman" : "Round Daman") +
+            " shoulder=" + shoulder + "\n" +
+            " neck=" + neck +
+            " collarType=" + (collarType == 1 ? "Cooper" : collarType == 2 ? "French" : "Sherwani") +
+            " description='" + description + '\'' +
+            " quantity=" + quantity + "\n" +
+            " orderDate=" + orderDate +
+            " deliveryDate=" + deliveryDate +
+            '}';
     }
 }

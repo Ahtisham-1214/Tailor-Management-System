@@ -103,6 +103,10 @@ public class Shirt implements Measurement {
         this.deliveryDate = deliveryDate;
     }
 
+    public byte getCollarType() {
+        return collarType;
+    }
+
     public Shirt(float chest, float sleeveLength, float shirtLength, float shoulder, float neck, byte collarType, byte cuffType, byte status, String description, int quantity, Date orderDate, Date deliveryDate) {
         this.chest = chest;
         this.sleeveLength = sleeveLength;

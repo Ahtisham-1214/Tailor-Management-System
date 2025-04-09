@@ -15,6 +15,7 @@ public class Main {
     ShirtPanel shirtPanel;
     PantPanel pantPanel;
     SetTailorDetailPanel setTailorDetailPanel;
+    SewingRatesPanel sewingRatesPanel;
 
     private JPanel orderPanel;
     private JLabel orderLabel;
@@ -31,6 +32,10 @@ public class Main {
     private JPanel analysisPanel;
     private JLabel analysisLabel;
     private JLabel analysisIcon;
+
+    private JPanel pricePanel;
+    private JLabel priceLabel;
+    private JLabel priceIcon;
     private static LinkedList<Customer> orders;
 
     public Main() {
@@ -54,19 +59,23 @@ public class Main {
         viewPanel = new JPanel();
         settingsPanel = new JPanel();
         analysisPanel = new JPanel();
+        pricePanel = new JPanel();
 
         orderPanel.setBackground(Color.GRAY);
         viewPanel.setBackground(Color.GRAY);
         analysisPanel.setBackground(Color.GRAY);
         settingsPanel.setBackground(Color.GRAY);
+        pricePanel.setBackground(Color.GRAY);
 
         orderPanel.setLayout(null);
         viewPanel.setLayout(null);
         analysisPanel.setLayout(null);
         settingsPanel.setLayout(null);
+        pricePanel.setLayout(null);
 
         orderPanel.setBounds(450, 150, 200, 200);
         viewPanel.setBounds(750, 150, 200, 200);
+        pricePanel.setBounds(1050, 150, 200, 200);
         analysisPanel.setBounds(450, 450, 200, 200);
         settingsPanel.setBounds(750, 450, 200, 200);
 
@@ -74,6 +83,7 @@ public class Main {
         viewIcon = new JLabel(new ImageIcon("table.png"));
         analysisIcon = new JLabel(new ImageIcon("analysis.png"));
         settingsIcon = new JLabel(new ImageIcon("settings.png"));
+        priceIcon = new JLabel(new ImageIcon("dollar.png"));
 
 
         viewLabel = new JLabel("View");
@@ -97,16 +107,23 @@ public class Main {
         settingsLabel.setFont(new Font("Serif", Font.BOLD, 20));
 //        orderLabel.setOpaque(true);
 
+        priceLabel = new JLabel("Price");
+        priceLabel.setForeground(Color.BLACK);
+        priceLabel.setFont(new Font("Serif", Font.BOLD, 20));
+//        priceLabel.setOpaque(true);
+
 
         orderLabel.setBounds(50, 150, 80, 30);
         viewLabel.setBounds(50, 150, 80, 30);
         analysisLabel.setBounds(50, 150, 80, 30);
         settingsLabel.setBounds(50, 150, 80, 30);
+        priceLabel.setBounds(50, 150, 80, 30);
 
         orderIcon.setBounds(40, 10, 100, 150);
         viewIcon.setBounds(40, 10, 140, 150);
         analysisIcon.setBounds(40, 10, 150, 150);
         settingsIcon.setBounds(40, 10, 150, 150);
+        priceIcon.setBounds(40, 10, 150, 150);
 
 
         orderPanel.add(orderLabel);
@@ -121,6 +138,9 @@ public class Main {
         analysisPanel.add(analysisLabel);
         analysisPanel.add(analysisIcon);
 
+        pricePanel.add(priceLabel);
+        pricePanel.add(priceIcon);
+
         sideBarPanel = new SideBarPanel();
         customerPanel = new CustomerPanel();
         coatPanel = new CoatPanel();
@@ -130,6 +150,7 @@ public class Main {
         setTailorDetailPanel = new SetTailorDetailPanel();
         loginPanel = new LoginPanel();
         tailorDetailPanel = new TailorDetailPanel();
+        sewingRatesPanel = new SewingRatesPanel();
 
         // Welcome Panel
         welcomePanel = new JPanel();
@@ -194,12 +215,10 @@ public class Main {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-//                JOptionPane.showMessageDialog(frame, "Login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                // Proceed to the next screen or functionality
 
                 frame.getContentPane().removeAll();
                 frame.add(tailorDetailPanel.getPanel());
-                landingWidgetsPanels(viewPanel, settingsPanel, analysisPanel, orderPanel);
+                landingWidgetsPanels(viewPanel, settingsPanel, analysisPanel, orderPanel, pricePanel);
 
 
             } else {
@@ -214,11 +233,12 @@ public class Main {
 
     }
 
-    private void landingWidgetsPanels(JPanel settingsPanel, JPanel analysisPanel, JPanel viewPanel, JPanel orderPanel) {
+    private void landingWidgetsPanels(JPanel settingsPanel, JPanel analysisPanel, JPanel viewPanel, JPanel orderPanel, JPanel pricePanel) {
         frame.add(orderPanel);
         frame.add(settingsPanel);
         frame.add(analysisPanel);
         frame.add(viewPanel);
+        frame.add(pricePanel);
         frame.revalidate();
         frame.repaint();
     }
@@ -229,10 +249,7 @@ public class Main {
         tailorDetailPanel.getBackButton().addActionListener(e -> {
             frame.getContentPane().removeAll();
             frame.add(tailorDetailPanel.getPanel());
-            loginPanel.getUserNameTextField().setText("");
-            loginPanel.getPasswordTextField().setText("");
-            frame.add(loginPanel.getPanel());
-            frame.getRootPane().setDefaultButton(loginPanel.getLoginButton());
+            landingWidgetsPanels(settingsPanel, analysisPanel, viewPanel, orderPanel, pricePanel);
             frame.revalidate();
             frame.repaint();
         });
@@ -290,8 +307,9 @@ public class Main {
         sideBarPanel.getBackButton().addActionListener(e -> {
             frame.getContentPane().removeAll();
             frame.add(tailorDetailPanel.getPanel());
-            landingWidgetsPanels(settingsPanel, analysisPanel, viewPanel, orderPanel);
+            landingWidgetsPanels(settingsPanel, analysisPanel, viewPanel, orderPanel, pricePanel);
         });
+
 
 
         orderPanel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -307,12 +325,22 @@ public class Main {
         settingsPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 frame.getContentPane().removeAll();
-                frame.add(setTailorDetailPanel.getSetDetailpanel());
+                frame.add(setTailorDetailPanel.getPanel());
                 frame.add(tailorDetailPanel.getPanel());
-
                 frame.revalidate();
                 frame.repaint();
             }
         });
+
+        pricePanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                frame.getContentPane().removeAll();
+                frame.add(tailorDetailPanel.getPanel());
+                frame.add(sewingRatesPanel.getPanel());
+                frame.revalidate();
+                frame.repaint();
+            }
+        });
+
     }
 }

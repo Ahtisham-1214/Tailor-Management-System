@@ -12,6 +12,7 @@ public class TailorDetailPanel {
     private JLabel emailLabel;
     private JButton backButton;
 
+
     public TailorDetailPanel() {
         panel = new JPanel();
         panel.setLayout(null);
